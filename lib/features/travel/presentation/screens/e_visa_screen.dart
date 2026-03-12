@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../core/constants/app_colors.dart';
+import '../../../../core/router/app_router.dart';
 
 class EVisaScreen extends StatelessWidget {
   const EVisaScreen({super.key});
@@ -121,7 +123,7 @@ class _CountryTile extends StatelessWidget {
           const Icon(Icons.chevron_right, color: AppColors.slate400),
         ],
       ),
-      onTap: () {},
+      onTap: () => context.push(AppRoutes.eVisaLinkedSuccess),
     );
   }
 }

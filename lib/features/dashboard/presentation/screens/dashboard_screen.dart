@@ -37,7 +37,7 @@ class DashboardScreen extends StatelessWidget {
               const SizedBox(height: 24),
               _QuickActionsSection(
                 onBookSpa: () {},
-                onRoomService: () {},
+                onRoomService: () => context.push(AppRoutes.orderingRoomServiceVoice),
                 onViewTours: () {},
                 onCheckout: () {},
               ),
@@ -84,26 +84,35 @@ class _DashboardHeader extends StatelessWidget {
               ],
             ),
           ),
-          Stack(
+          Row(
             children: [
               IconButton(
-                icon: const Icon(Icons.notifications_outlined),
-                onPressed: () {},
+                icon: const Icon(Icons.mic),
+                onPressed: () => context.push(AppRoutes.aiVoiceAssistant),
+                tooltip: 'AI Voice Assistant',
               ),
-              Positioned(
-                top: 8,
-                right: 8,
-                child: Container(
-                  width: 8,
-                  height: 8,
-                  decoration: const BoxDecoration(
-                    color: AppColors.accentGold,
-                    shape: BoxShape.circle,
-                    border: Border.fromBorderSide(
-                      BorderSide(color: AppColors.backgroundDark, width: 2),
+              Stack(
+                children: [
+                  IconButton(
+                    icon: const Icon(Icons.notifications_outlined),
+                    onPressed: () {},
+                  ),
+                  Positioned(
+                    top: 8,
+                    right: 8,
+                    child: Container(
+                      width: 8,
+                      height: 8,
+                      decoration: const BoxDecoration(
+                        color: AppColors.accentGold,
+                        shape: BoxShape.circle,
+                        border: Border.fromBorderSide(
+                          BorderSide(color: AppColors.backgroundDark, width: 2),
+                        ),
+                      ),
                     ),
                   ),
-                ),
+                ],
               ),
             ],
           ),

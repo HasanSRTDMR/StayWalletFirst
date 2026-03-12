@@ -52,6 +52,11 @@ class ProfileScreen extends StatelessWidget {
             onTap: () => context.push(AppRoutes.smartCard),
           ),
           _ProfileTile(
+            icon: Icons.people,
+            title: 'Secondary Cardholder',
+            onTap: () => context.push(AppRoutes.secondaryCardholderAppView),
+          ),
+          _ProfileTile(
             icon: Icons.verified_user,
             title: 'Identity Verification',
             onTap: () => context.push(AppRoutes.identityVerification),

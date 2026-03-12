@@ -115,6 +115,7 @@ class TravelServicesScreen extends StatelessWidget {
                         title: 'Rental Car',
                         subtitle: 'Sixt / Avis / Hertz',
                         color: Colors.blue,
+                        onTap: () => context.push(AppRoutes.selectUberRide),
                       ),
                       _CategoryCard(
                         icon: Icons.hotel,
@@ -133,6 +134,7 @@ class TravelServicesScreen extends StatelessWidget {
                         title: 'Travel Insurance',
                         subtitle: 'Allianz Global Assistance',
                         color: Colors.purple,
+                        onTap: () => context.push(AppRoutes.allianzTravelInsuranceSelection),
                       ),
                       _CategoryCardFullWidth(
                         icon: Icons.fact_check,
@@ -459,50 +461,55 @@ class _CategoryCard extends StatelessWidget {
     required this.title,
     required this.subtitle,
     required this.color,
+    this.onTap,
   });
 
   final IconData icon;
   final String title;
   final String subtitle;
   final Color color;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: AppColors.slate800.withOpacity(0.5),
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: AppColors.slate800),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            padding: const EdgeInsets.all(8),
-            decoration: BoxDecoration(
-              color: color.withOpacity(0.2),
-              borderRadius: BorderRadius.circular(8),
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: AppColors.slate800.withOpacity(0.5),
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(color: AppColors.slate800),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              padding: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: color.withOpacity(0.2),
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Icon(icon, color: color, size: 24),
             ),
-            child: Icon(icon, color: color, size: 24),
-          ),
-          const SizedBox(height: 12),
-          Text(
-            title,
-            style: const TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.w700,
+            const SizedBox(height: 12),
+            Text(
+              title,
+              style: const TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.w700,
+              ),
             ),
-          ),
-          const SizedBox(height: 4),
-          Text(
-            subtitle,
-            style: const TextStyle(
-              fontSize: 10,
-              color: AppColors.slate500,
+            const SizedBox(height: 4),
+            Text(
+              subtitle,
+              style: const TextStyle(
+                fontSize: 10,
+                color: AppColors.slate500,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

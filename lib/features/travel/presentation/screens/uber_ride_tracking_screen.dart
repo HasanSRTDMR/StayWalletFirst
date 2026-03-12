@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../core/constants/app_colors.dart';
+import '../../../../core/router/app_router.dart';
 
 class UberRideTrackingScreen extends StatelessWidget {
   const UberRideTrackingScreen({super.key});
@@ -128,8 +130,8 @@ class UberRideTrackingScreen extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: () {},
-                child: const Text('Contact Driver'),
+                onPressed: () => context.push(AppRoutes.selectUberRide),
+                child: const Text('Book Another Ride'),
               ),
             ),
           ],

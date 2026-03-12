@@ -24,6 +24,14 @@ import '../../features/travel/presentation/screens/order_confirmation_screen.dar
 import '../../features/travel/presentation/screens/order_tracking_screen.dart';
 import '../../features/travel/presentation/screens/post_trip_expense_screen.dart';
 import '../../features/marketplace/presentation/screens/profile_screen.dart';
+import '../../features/ai/presentation/screens/ai_voice_assistant_screen.dart';
+import '../../features/integrations/presentation/screens/allianz_insurance_linked_success_screen.dart';
+import '../../features/integrations/presentation/screens/allianz_travel_insurance_selection_screen.dart';
+import '../../features/integrations/presentation/screens/e_visa_linked_success_screen.dart';
+import '../../features/travel/presentation/screens/ordering_room_service_voice_screen.dart';
+import '../../features/wallet/presentation/screens/secondary_cardholder_app_view_screen.dart';
+import '../../features/travel/presentation/screens/select_uber_ride_screen.dart';
+import '../../features/travel/presentation/screens/integrated_travel_hub_screen.dart';
 import '../../widgets/scaffold_with_nav.dart';
 
 /// Route names for type-safe navigation
@@ -55,6 +63,18 @@ class AppRoutes {
   static const String postTripExpense = '/travel/post-trip-expense';
   static const String connectAccount = '/integrations/connect';
   static const String linkedSuccess = '/integrations/linked-success';
+  static const String aiVoiceAssistant = '/ai/voice-assistant';
+  static const String allianzInsuranceLinkedSuccess =
+      '/integrations/allianz-insurance-linked-success';
+  static const String allianzTravelInsuranceSelection =
+      '/integrations/allianz-travel-insurance-selection';
+  static const String eVisaLinkedSuccess = '/integrations/e-visa-linked-success';
+  static const String orderingRoomServiceVoice =
+      '/travel/ordering-room-service-voice';
+  static const String secondaryCardholderAppView =
+      '/wallet/secondary-cardholder-app-view';
+  static const String selectUberRide = '/travel/select-uber-ride';
+  static const String integratedTravelHub = '/travel/integrated-travel-hub';
 }
 
 /// GoRouter configuration for StayWallet app
@@ -416,6 +436,134 @@ class AppRouter {
             ),
           );
         },
+      ),
+      GoRoute(
+        path: AppRoutes.aiVoiceAssistant,
+        parentNavigatorKey: _rootNavigatorKey,
+        pageBuilder: (context, state) => CustomTransitionPage(
+          key: state.pageKey,
+          child: const AIVoiceAssistantScreen(),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) =>
+              SlideTransition(
+            position: Tween<Offset>(
+              begin: const Offset(0, 1),
+              end: Offset.zero,
+            ).animate(animation),
+            child: child,
+          ),
+        ),
+      ),
+      GoRoute(
+        path: AppRoutes.allianzInsuranceLinkedSuccess,
+        parentNavigatorKey: _rootNavigatorKey,
+        pageBuilder: (context, state) => CustomTransitionPage(
+          key: state.pageKey,
+          child: const AllianzInsuranceLinkedSuccessScreen(),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) =>
+              SlideTransition(
+            position: Tween<Offset>(
+              begin: const Offset(1, 0),
+              end: Offset.zero,
+            ).animate(animation),
+            child: child,
+          ),
+        ),
+      ),
+      GoRoute(
+        path: AppRoutes.allianzTravelInsuranceSelection,
+        parentNavigatorKey: _rootNavigatorKey,
+        pageBuilder: (context, state) => CustomTransitionPage(
+          key: state.pageKey,
+          child: const AllianzTravelInsuranceSelectionScreen(),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) =>
+              SlideTransition(
+            position: Tween<Offset>(
+              begin: const Offset(1, 0),
+              end: Offset.zero,
+            ).animate(animation),
+            child: child,
+          ),
+        ),
+      ),
+      GoRoute(
+        path: AppRoutes.eVisaLinkedSuccess,
+        parentNavigatorKey: _rootNavigatorKey,
+        pageBuilder: (context, state) => CustomTransitionPage(
+          key: state.pageKey,
+          child: const EVisaLinkedSuccessScreen(),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) =>
+              SlideTransition(
+            position: Tween<Offset>(
+              begin: const Offset(1, 0),
+              end: Offset.zero,
+            ).animate(animation),
+            child: child,
+          ),
+        ),
+      ),
+      GoRoute(
+        path: AppRoutes.orderingRoomServiceVoice,
+        parentNavigatorKey: _rootNavigatorKey,
+        pageBuilder: (context, state) => CustomTransitionPage(
+          key: state.pageKey,
+          child: const OrderingRoomServiceVoiceScreen(),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) =>
+              SlideTransition(
+            position: Tween<Offset>(
+              begin: const Offset(0, 1),
+              end: Offset.zero,
+            ).animate(animation),
+            child: child,
+          ),
+        ),
+      ),
+      GoRoute(
+        path: AppRoutes.secondaryCardholderAppView,
+        parentNavigatorKey: _rootNavigatorKey,
+        pageBuilder: (context, state) => CustomTransitionPage(
+          key: state.pageKey,
+          child: const SecondaryCardholderAppViewScreen(),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) =>
+              SlideTransition(
+            position: Tween<Offset>(
+              begin: const Offset(1, 0),
+              end: Offset.zero,
+            ).animate(animation),
+            child: child,
+          ),
+        ),
+      ),
+      GoRoute(
+        path: AppRoutes.selectUberRide,
+        parentNavigatorKey: _rootNavigatorKey,
+        pageBuilder: (context, state) => CustomTransitionPage(
+          key: state.pageKey,
+          child: const SelectUberRideScreen(),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) =>
+              SlideTransition(
+            position: Tween<Offset>(
+              begin: const Offset(0, 1),
+              end: Offset.zero,
+            ).animate(animation),
+            child: child,
+          ),
+        ),
+      ),
+      GoRoute(
+        path: AppRoutes.integratedTravelHub,
+        parentNavigatorKey: _rootNavigatorKey,
+        pageBuilder: (context, state) => CustomTransitionPage(
+          key: state.pageKey,
+          child: const IntegratedTravelHubScreen(),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) =>
+              SlideTransition(
+            position: Tween<Offset>(
+              begin: const Offset(1, 0),
+              end: Offset.zero,
+            ).animate(animation),
+            child: child,
+          ),
+        ),
       ),
     ],
   );
