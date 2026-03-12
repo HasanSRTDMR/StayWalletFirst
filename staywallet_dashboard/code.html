@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>StayWallet Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0f45b3",
+                        "accent-gold": "#d4af37",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                        "card-dark": "#1c2331",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .gold-gradient {
+            background: linear-gradient(135deg, #d4af37 0%, #f1d592 50%, #b8860b 100%);
+        }
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen pb-24">
+<!-- Header -->
+<header class="flex items-center justify-between p-4 sticky top-0 z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-full border-2 border-accent-gold p-0.5">
+<div class="w-full h-full rounded-full bg-cover bg-center" data-alt="User profile avatar portrait" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAkKWGzFVm2-7b3EyS3pWBmtbNVZmeEOQ_CEgG8nwYQdEN4K_OEIr0pk1TlFwyyckHu4iUw0FFVaSRXq0Nh6c5ZUewKcFIxfgoRy90DxX_5CoLaYad7jyTDDh3nysZCh8CJXOcw0cDZKaEuB8dvZdhMabYoMY_iAfjVURa9DYNFFSYVohiPfgeole9Q8B07VTi6Q0RgEgxxxZSI1x5Sjx8_2Vjq62BefjSicCJ9o3TnGZ0yKTtXjGFA-XI20n8b4-Nn1r4ujMe9iQM6')"></div>
+</div>
+<div>
+<p class="text-xs text-slate-500 dark:text-slate-400">Welcome back,</p>
+<p class="font-bold text-sm">Mr. Alexander</p>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 size-2 bg-accent-gold rounded-full border-2 border-background-dark"></span>
+</button>
+</div>
+</header>
+<main class="max-w-md mx-auto px-4 space-y-6">
+<!-- Loyalty Status -->
+<section class="relative overflow-hidden rounded-xl p-4 gold-gradient text-slate-900">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h3 class="text-xs font-bold uppercase tracking-wider opacity-80">Membership Tier</h3>
+<p class="text-2xl font-bold italic">Gold Status</p>
+</div>
+<span class="material-symbols-outlined text-4xl opacity-50">workspace_premium</span>
+</div>
+<div class="space-y-1">
+<div class="flex justify-between text-xs font-bold">
+<span>850 / 1000 pts</span>
+<span>Diamond Status</span>
+</div>
+<div class="w-full h-1.5 bg-black/10 rounded-full overflow-hidden">
+<div class="h-full bg-black/40 w-[85%] rounded-full"></div>
+</div>
+<p class="text-[10px] font-medium mt-1">150 points until your next luxury reward</p>
+</div>
+</section>
+<!-- Room Access (Digital Key) -->
+<section class="bg-card-dark rounded-xl overflow-hidden shadow-2xl border border-slate-800">
+<div class="h-32 bg-cover bg-center relative" data-alt="Luxury hotel room interior wide view" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDtMOquMZeSy5vbzeF1LyryVO1AETid7GB67wV6i8kqXSNqkAsXfsAzRKXuseCUI2zH2sK5Z6TdndvSmcPr7Mu_yrmCCpC-Ydfg30NxSSULPkq6LLfd7FAtIHwyeY0Zb-b8um-lKJSQHDRcwFMeA9U7jgXoIzOLGljO04JUSG5XViXtxdchkrIeME6I2w67STW_VKU6kut1C-eNfDLiS2sp3AFmOYlc-e8X1tlniVuJXQzC3lQfh8rJij26uUgBs6yObDaLnMQOD2UV')">
+<div class="absolute inset-0 bg-gradient-to-t from-card-dark to-transparent"></div>
+<div class="absolute bottom-3 left-4">
+<span class="bg-accent-gold text-black text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">Digital Key Active</span>
+</div>
+</div>
+<div class="p-4 flex items-center justify-between">
+<div>
+<h2 class="text-lg font-bold">Grand Mirage Dubai</h2>
+<p class="text-slate-400 text-sm">Room 402 • Deluxe Suite</p>
+</div>
+<button class="size-14 rounded-full bg-primary flex items-center justify-center shadow-lg shadow-primary/40 active:scale-95 transition-transform group">
+<span class="material-symbols-outlined text-white text-3xl group-active:animate-pulse">lock_open</span>
+</button>
+</div>
+</section>
+<!-- Wallet Balance -->
+<section class="space-y-3">
+<div class="flex justify-between items-center">
+<h3 class="font-bold">StayWallet Balance</h3>
+<button class="text-accent-gold text-sm font-medium flex items-center gap-1">
+                    Manage <span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+<div class="bg-slate-900 rounded-xl p-5 border border-slate-800 space-y-4 relative overflow-hidden">
+<div class="absolute top-0 right-0 p-4 opacity-10">
+<span class="material-symbols-outlined text-6xl">account_balance_wallet</span>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex-1">
+<p class="text-slate-400 text-xs mb-1 uppercase tracking-tighter">Primary Currency (AED)</p>
+<p class="text-3xl font-bold tracking-tight">1,250.00 <span class="text-slate-500 font-normal text-lg">AED</span></p>
+</div>
+<button class="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-lg text-sm font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">add</span> Top Up
+                    </button>
+</div>
+<div class="flex gap-2 pt-2 border-t border-slate-800">
+<div class="px-3 py-2 bg-slate-800 rounded-lg flex-1">
+<p class="text-[10px] text-slate-400 uppercase">USD</p>
+<p class="text-sm font-bold">$340.50</p>
+</div>
+<div class="px-3 py-2 bg-slate-800 rounded-lg flex-1">
+<p class="text-[10px] text-slate-400 uppercase">EUR</p>
+<p class="text-sm font-bold">€312.00</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Quick Actions -->
+<section class="grid grid-cols-4 gap-3">
+<button class="flex flex-col items-center gap-2">
+<div class="size-14 glass-effect rounded-2xl flex items-center justify-center text-accent-gold hover:bg-accent-gold hover:text-black transition-all">
+<span class="material-symbols-outlined">spa</span>
+</div>
+<span class="text-[10px] font-medium text-center">Book Spa</span>
+</button>
+<button class="flex flex-col items-center gap-2">
+<div class="size-14 glass-effect rounded-2xl flex items-center justify-center text-accent-gold hover:bg-accent-gold hover:text-black transition-all">
+<span class="material-symbols-outlined">restaurant</span>
+</div>
+<span class="text-[10px] font-medium text-center">Room Service</span>
+</button>
+<button class="flex flex-col items-center gap-2">
+<div class="size-14 glass-effect rounded-2xl flex items-center justify-center text-accent-gold hover:bg-accent-gold hover:text-black transition-all">
+<span class="material-symbols-outlined">explore</span>
+</div>
+<span class="text-[10px] font-medium text-center">View Tours</span>
+</button>
+<button class="flex flex-col items-center gap-2">
+<div class="size-14 glass-effect rounded-2xl flex items-center justify-center text-slate-400 hover:bg-red-500 hover:text-white transition-all">
+<span class="material-symbols-outlined">logout</span>
+</div>
+<span class="text-[10px] font-medium text-center">Check-out</span>
+</button>
+</section>
+<!-- Recent Activity -->
+<section class="space-y-3 pb-8">
+<h3 class="font-bold">Recent Activity</h3>
+<div class="space-y-3">
+<!-- Transaction 1 -->
+<div class="flex items-center gap-3 p-3 bg-card-dark rounded-xl border border-slate-800">
+<div class="size-10 bg-primary/20 rounded-lg flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">dinner_dining</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between">
+<p class="text-sm font-bold">Mirage Grill &amp; Lounge</p>
+<p class="text-sm font-bold">- 245.00 AED</p>
+</div>
+<div class="flex justify-between items-center mt-0.5">
+<p class="text-[11px] text-slate-500">Hotel Restaurant</p>
+<span class="text-[10px] bg-accent-gold/20 text-accent-gold px-1.5 py-0.5 rounded font-bold">15% Discount Applied</span>
+</div>
+</div>
+</div>
+<!-- Transaction 2 -->
+<div class="flex items-center gap-3 p-3 bg-card-dark rounded-xl border border-slate-800">
+<div class="size-10 bg-slate-800 rounded-lg flex items-center justify-center text-slate-400">
+<span class="material-symbols-outlined">shopping_bag</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between">
+<p class="text-sm font-bold">Dubai Mall Merchant</p>
+<p class="text-sm font-bold">- 89.00 AED</p>
+</div>
+<div class="flex justify-between items-center mt-0.5">
+<p class="text-[11px] text-slate-500">External Merchant</p>
+<p class="text-[11px] text-slate-400">2 hours ago</p>
+</div>
+</div>
+</div>
+<!-- Transaction 3 -->
+<div class="flex items-center gap-3 p-3 bg-card-dark rounded-xl border border-slate-800">
+<div class="size-10 bg-green-500/20 rounded-lg flex items-center justify-center text-green-500">
+<span class="material-symbols-outlined">add_circle</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between">
+<p class="text-sm font-bold">Wallet Top-up</p>
+<p class="text-sm font-bold text-green-500">+ 500.00 AED</p>
+</div>
+<div class="flex justify-between items-center mt-0.5">
+<p class="text-[11px] text-slate-500">Visa **** 4421</p>
+<p class="text-[11px] text-slate-400">Yesterday</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation -->
+<nav class="fixed bottom-0 left-0 right-0 bg-background-dark/95 border-t border-slate-800 backdrop-blur-lg px-2 pb-6 pt-2 z-50">
+<div class="max-w-md mx-auto flex justify-between">
+<a class="flex flex-col items-center gap-1 flex-1 text-accent-gold" href="#">
+<span class="material-symbols-outlined fill-1">home</span>
+<span class="text-[10px] font-medium">Home</span>
+</a>
+<a class="flex flex-col items-center gap-1 flex-1 text-slate-500" href="#">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+<span class="text-[10px] font-medium">Wallet</span>
+</a>
+<a class="flex flex-col items-center gap-1 flex-1 text-slate-500" href="#">
+<div class="size-12 -mt-6 bg-primary rounded-full flex items-center justify-center text-white shadow-lg shadow-primary/40 border-4 border-background-dark">
+<span class="material-symbols-outlined">vpn_key</span>
+</div>
+<span class="text-[10px] font-medium">Key</span>
+</a>
+<a class="flex flex-col items-center gap-1 flex-1 text-slate-500" href="#">
+<span class="material-symbols-outlined">concierge</span>
+<span class="text-[10px] font-medium">Services</span>
+</a>
+<a class="flex flex-col items-center gap-1 flex-1 text-slate-500" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-medium">Profile</span>
+</a>
+</div>
+</nav>
+</body></html>

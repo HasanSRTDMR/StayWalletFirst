@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0f45b3",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<title>Uber Connection Success</title>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased">
+<div class="relative flex h-auto min-h-screen w-full flex-col bg-background-light dark:bg-background-dark group/design-root overflow-x-hidden max-w-md mx-auto border-x border-slate-200 dark:border-slate-800">
+<!-- Header Section -->
+<div class="flex items-center bg-background-light dark:bg-background-dark p-4 pb-2 justify-between">
+<div class="text-slate-900 dark:text-slate-100 flex size-12 shrink-0 items-center justify-start cursor-pointer">
+<span class="material-symbols-outlined" style="font-size: 24px;">arrow_back</span>
+</div>
+<h2 class="text-slate-900 dark:text-slate-100 text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center pr-12">Connection Success</h2>
+</div>
+<!-- Success Visual Area -->
+<div class="@container">
+<div class="@[480px]:px-4 @[480px]:py-3">
+<div class="w-full bg-center bg-no-repeat bg-cover flex flex-col items-center justify-center overflow-hidden bg-primary/10 dark:bg-primary/20 @[480px]:rounded-lg min-h-[218px] relative" data-alt="Abstract dark city background with blue glow" style='background-image: linear-gradient(rgba(15, 69, 179, 0.1), rgba(16, 22, 34, 0.9)), url("https://lh3.googleusercontent.com/aida-public/AB6AXuCy4_TSIDsITSYgwu1JjiJHhr44cOwyiIScUBVMN0G9r6_bdLLPwfk1mrf0CCefFiebikjeXEwP9Hwbf9Pqvw4IvqpLa2MDcCPiSDu9AuWxs8PzkIjflw98jc_jnBn1oYMfSrwqQtp9_CE6vim5abG5dN97bsmoOzz5MWKrc5_J-4JhDrQ01ot-025EGxJLftjfG0IxZ4mc9fB1j-WGsNQiXnEptHWO9KgNWMCXhjeO6RoPdrQDqbwvUkYyOi5KAnAu28H6rGcUJ5No");'>
+<div class="bg-primary rounded-full p-6 shadow-xl shadow-primary/40 flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-white" style="font-size: 48px;">check_circle</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Title & Subtitle -->
+<div class="flex flex-col items-center px-4 pt-8 pb-3">
+<h2 class="text-slate-900 dark:text-slate-100 tracking-tight text-[28px] font-bold leading-tight text-center">Uber Connected</h2>
+<p class="text-slate-600 dark:text-slate-400 text-base font-normal leading-normal pt-2 text-center max-w-xs">Your Uber account has been successfully synced with StayWallet for seamless travel tracking.</p>
+</div>
+<!-- Details Section -->
+<div class="px-4 py-4">
+<h3 class="text-slate-900 dark:text-slate-100 text-lg font-bold leading-tight tracking-[-0.015em] pb-4">Synced Data</h3>
+<div class="space-y-3">
+<!-- Data Item 1 -->
+<div class="flex items-center gap-4 p-4 rounded-xl bg-slate-100 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800">
+<div class="flex size-10 items-center justify-center rounded-lg bg-primary/20 text-primary">
+<span class="material-symbols-outlined">person</span>
+</div>
+<div class="flex flex-col">
+<span class="text-sm text-slate-500 dark:text-slate-400">Account</span>
+<span class="text-base font-medium text-slate-900 dark:text-slate-100">alex.walker@gmail.com</span>
+</div>
+</div>
+<!-- Data Item 2 -->
+<div class="flex items-center gap-4 p-4 rounded-xl bg-slate-100 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800">
+<div class="flex size-10 items-center justify-center rounded-lg bg-primary/20 text-primary">
+<span class="material-symbols-outlined">directions_car</span>
+</div>
+<div class="flex flex-col">
+<span class="text-sm text-slate-500 dark:text-slate-400">Recent Rides</span>
+<span class="text-base font-medium text-slate-900 dark:text-slate-100">12 rides synced</span>
+</div>
+</div>
+<!-- Data Item 3 -->
+<div class="flex items-center gap-4 p-4 rounded-xl bg-slate-100 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800">
+<div class="flex size-10 items-center justify-center rounded-lg bg-primary/20 text-primary">
+<span class="material-symbols-outlined">receipt_long</span>
+</div>
+<div class="flex flex-col">
+<span class="text-sm text-slate-500 dark:text-slate-400">Expense History</span>
+<span class="text-base font-medium text-slate-900 dark:text-slate-100">Last 6 months active</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Spacer -->
+<div class="flex-grow min-h-[40px]"></div>
+<!-- Action Button -->
+<div class="p-4 mb-4">
+<button class="w-full bg-primary hover:bg-primary/90 text-white font-bold py-4 px-6 rounded-xl transition-colors duration-200 flex items-center justify-center gap-2">
+<span>Go to Travel Hub</span>
+<span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+</body></html>

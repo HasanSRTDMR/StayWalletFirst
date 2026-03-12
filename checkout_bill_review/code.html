@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>StayWallet - Checkout &amp; Bill Review</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0f45b3",
+                        "accent-gold": "#d4af37",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .gold-gradient {
+            background: linear-gradient(135deg, #d4af37 0%, #f1d592 50%, #b8860b 100%);
+        }
+        .card-glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen font-display">
+<div class="relative flex h-full min-h-screen w-full max-w-md mx-auto flex-col bg-background-light dark:bg-background-dark overflow-x-hidden pb-32">
+<!-- TopAppBar -->
+<header class="flex items-center bg-background-light dark:bg-background-dark p-4 sticky top-0 z-50 border-b border-slate-200 dark:border-slate-800">
+<div class="flex size-10 shrink-0 items-center justify-center cursor-pointer text-slate-900 dark:text-slate-100">
+<span class="material-symbols-outlined">close</span>
+</div>
+<h2 class="text-slate-900 dark:text-slate-100 text-lg font-bold leading-tight flex-1 text-center">Checkout &amp; Bill Review</h2>
+<div class="flex size-10 items-center justify-end">
+<span class="material-symbols-outlined text-primary">receipt_long</span>
+</div>
+</header>
+<!-- Summary Section -->
+<div class="px-4 pt-6 pb-4">
+<h2 class="text-slate-900 dark:text-slate-100 text-[22px] font-bold tracking-tight mb-4">Reservation Summary</h2>
+<div class="flex gap-4 p-4 rounded-xl bg-slate-100 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-800">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-lg w-20 shrink-0" data-alt="Luxury hotel exterior view at dusk" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB0S9LfHON334XPNieHSmyW0ZtPag5aiU3RqZJ8modgGoYV4Pfh0zdpuVEW6DWnweEnLlUcrrE9aqMlJ10QFDQ1QlEPbCidZnc47oeaTuZJnrgD2qVKL1--ub99O3ewVNI1bzbCCK4hrO0oKt8HNtFlcv0KRIPxwV4WPK38Up1R7mepyCQjIL0TN0J1TqcefBC_6Le7mBXWawffgU_P3LiDMR8MEH2DOmHUtJAMYWqd2FWxTX-29bIE0gwN2D0xF9V18opn3Lar8r0q");'></div>
+<div class="flex flex-1 flex-col justify-center">
+<p class="text-slate-900 dark:text-slate-100 text-base font-bold">Grand Mirage Dubai</p>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Room 402 • King Suite</p>
+<div class="flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-xs text-slate-400">calendar_today</span>
+<p class="text-slate-500 dark:text-slate-400 text-xs">Oct 12 - Oct 15, 2023</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Bill Breakdown -->
+<div class="px-4 py-4">
+<div class="flex items-center justify-between mb-3">
+<h3 class="text-slate-900 dark:text-slate-100 text-lg font-bold">Bill Breakdown</h3>
+<span class="text-xs font-medium text-primary bg-primary/10 px-2 py-1 rounded">Pending Finalization</span>
+</div>
+<div class="space-y-4">
+<!-- Row 1 -->
+<div class="flex items-start justify-between py-2 border-b border-slate-200 dark:border-slate-800">
+<div class="flex flex-col">
+<p class="text-slate-900 dark:text-slate-100 text-base font-medium">Accommodation</p>
+<p class="text-slate-500 dark:text-slate-400 text-xs">3 nights at $450/night</p>
+</div>
+<p class="text-slate-900 dark:text-slate-100 text-base font-semibold">$1,350.00</p>
+</div>
+<!-- Row 2 -->
+<div class="flex items-start justify-between py-2 border-b border-slate-200 dark:border-slate-800">
+<div class="flex flex-col">
+<p class="text-slate-900 dark:text-slate-100 text-base font-medium">Dining &amp; Room Service</p>
+<p class="text-slate-500 dark:text-slate-400 text-xs">Wagyu Burger, Drinks, Breakfast</p>
+</div>
+<p class="text-slate-900 dark:text-slate-100 text-base font-semibold">$145.00</p>
+</div>
+<!-- Row 3 -->
+<div class="flex items-start justify-between py-2 border-b border-slate-200 dark:border-slate-800">
+<div class="flex flex-col">
+<p class="text-slate-900 dark:text-slate-100 text-base font-medium">Spa &amp; Wellness</p>
+<p class="text-slate-500 dark:text-slate-400 text-xs">Deep Tissue Massage (90 min)</p>
+</div>
+<p class="text-slate-900 dark:text-slate-100 text-base font-semibold">$120.00</p>
+</div>
+<!-- Row 4 -->
+<div class="flex items-start justify-between py-2 border-b border-slate-200 dark:border-slate-800">
+<div class="flex flex-col">
+<p class="text-slate-900 dark:text-slate-100 text-base font-medium">Taxes &amp; Fees</p>
+<p class="text-slate-500 dark:text-slate-400 text-xs">Tourism Dirham, 5% VAT</p>
+</div>
+<p class="text-slate-900 dark:text-slate-100 text-base font-semibold">$85.50</p>
+</div>
+</div>
+</div>
+<!-- StayWallet Savings Section -->
+<div class="px-4 py-4">
+<div class="p-4 rounded-xl bg-primary/5 border border-primary/20 flex items-center gap-4">
+<div class="size-12 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary">savings</span>
+</div>
+<div>
+<p class="text-slate-900 dark:text-slate-100 text-sm font-bold">Total Savings with StayWallet</p>
+<p class="text-primary text-base font-bold">-$42.75</p>
+<p class="text-slate-500 dark:text-slate-400 text-[10px] uppercase tracking-wider font-semibold">15% off eligible hotel spend applied</p>
+</div>
+</div>
+</div>
+<!-- Grand Total -->
+<div class="px-4 py-6 text-center">
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium uppercase tracking-widest mb-1">Total to Pay</p>
+<h1 class="text-4xl font-extrabold text-slate-900 dark:text-slate-100 tracking-tight">$1,657.75</h1>
+</div>
+<!-- Payment Method -->
+<div class="px-4 py-4">
+<p class="text-slate-500 dark:text-slate-400 text-xs font-bold uppercase tracking-widest mb-3">Payment Method</p>
+<div class="relative overflow-hidden rounded-xl bg-slate-900 p-5 text-white shadow-xl">
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary/20 blur-3xl -mr-10 -mt-10"></div>
+<div class="flex items-start justify-between mb-8">
+<div class="flex flex-col">
+<p class="text-[10px] uppercase font-bold text-slate-400 tracking-widest">StayWallet Card</p>
+<p class="text-lg font-display tracking-[0.2em] mt-1">**** **** **** 8842</p>
+</div>
+<div class="flex flex-col items-end">
+<span class="text-xs italic font-bold">VISA</span>
+<p class="text-[8px] uppercase text-slate-400 font-bold mt-1">Premium Member</p>
+</div>
+</div>
+<div class="flex items-end justify-between">
+<div>
+<p class="text-[10px] uppercase text-slate-400 font-bold">Current Balance</p>
+<p class="text-xl font-bold">$12,450.00</p>
+</div>
+<div class="flex flex-col items-end">
+<p class="text-[10px] uppercase text-slate-400 font-bold">Exp</p>
+<p class="text-sm font-medium tracking-widest">12/26</p>
+</div>
+</div>
+</div>
+<div class="flex justify-center mt-3">
+<button class="text-primary text-xs font-bold flex items-center gap-1">
+                    Change Payment Method <span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Actions -->
+<div class="fixed bottom-0 left-0 right-0 p-4 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-t border-slate-200 dark:border-slate-800 max-w-md mx-auto z-50">
+<button class="w-full bg-primary hover:bg-primary/90 text-white py-4 rounded-xl font-bold text-base shadow-lg shadow-primary/20 transition-all flex items-center justify-center gap-2">
+                Complete Checkout &amp; Pay
+                <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+<button class="w-full mt-3 flex items-center justify-center gap-2 py-2 text-slate-500 dark:text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-sm">picture_as_pdf</span>
+<span class="text-sm font-medium">Download Detailed PDF Invoice</span>
+</button>
+</div>
+</div>
+</body></html>

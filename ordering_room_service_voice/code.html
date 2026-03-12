@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#0f45b3",
+              "accent-gold": "#d4af37",
+              "background-light": "#f6f6f8",
+              "background-dark": "#101622",
+            },
+            fontFamily: {
+              "display": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<title>StayWallet AI Assistant</title>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
+<!-- Header -->
+<header class="flex items-center justify-between p-4 border-b border-slate-200 dark:border-slate-800 bg-background-light dark:bg-background-dark sticky top-0 z-10">
+<button class="p-2 hover:bg-slate-200 dark:hover:bg-slate-800 rounded-full transition-colors">
+<span class="material-symbols-outlined text-slate-600 dark:text-slate-400">close</span>
+</button>
+<div class="flex flex-col items-center">
+<span class="text-sm font-semibold tracking-widest uppercase text-primary">StayWallet</span>
+<span class="text-[10px] text-slate-500 uppercase tracking-tighter">AI Concierge</span>
+</div>
+<button class="p-2 hover:bg-slate-200 dark:hover:bg-slate-800 rounded-full transition-colors">
+<span class="material-symbols-outlined text-slate-600 dark:text-slate-400">history</span>
+</button>
+</header>
+<main class="flex-1 flex flex-col px-6 py-8 gap-8 overflow-y-auto">
+<!-- Transcript Section -->
+<section class="text-center space-y-4">
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Listening...</p>
+<h1 class="text-2xl md:text-3xl font-bold leading-tight text-slate-900 dark:text-slate-100 italic">
+                "I'd like to order a <span class="text-primary">Wagyu Burger</span> and a <span class="text-primary">Coke</span>, please."
+            </h1>
+</section>
+<!-- Waveform Visualization -->
+<section class="relative h-32 flex items-center justify-center gap-1">
+<!-- Simulated Waveform Bars -->
+<div class="w-1.5 h-8 bg-primary/40 rounded-full"></div>
+<div class="w-1.5 h-12 bg-primary/60 rounded-full"></div>
+<div class="w-1.5 h-20 bg-primary rounded-full shadow-[0_0_15px_rgba(15,69,179,0.5)]"></div>
+<div class="w-1.5 h-24 bg-accent-gold rounded-full shadow-[0_0_15px_rgba(212,175,55,0.5)]"></div>
+<div class="w-1.5 h-16 bg-primary rounded-full"></div>
+<div class="w-1.5 h-28 bg-accent-gold rounded-full shadow-[0_0_20px_rgba(212,175,55,0.6)]"></div>
+<div class="w-1.5 h-20 bg-primary rounded-full"></div>
+<div class="w-1.5 h-12 bg-primary/60 rounded-full"></div>
+<div class="w-1.5 h-8 bg-primary/40 rounded-full"></div>
+</section>
+<!-- Live Processing Status -->
+<section class="space-y-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="relative flex h-3 w-3">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-3 w-3 bg-primary"></span>
+</span>
+<h2 class="text-sm font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400">Live Processing</h2>
+</div>
+<span class="text-xs font-mono text-primary bg-primary/10 px-2 py-0.5 rounded-full">Analyzing Audio...</span>
+</div>
+<div class="space-y-3">
+<!-- Item Card 1 -->
+<div class="flex items-center gap-4 p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/50 shadow-sm">
+<div class="w-16 h-16 rounded-lg overflow-hidden bg-slate-200 dark:bg-slate-800">
+<div class="w-full h-full bg-cover bg-center" data-alt="Gourmet wagyu beef burger with toppings" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDva0imzEjNvSSMcw6kbvrEsn5nXceVrl-Dk1GyWtOEJCzM9YsdRP57rEXL_QeZy9AlY4pYKq6CAwiWWBs8sgP7T7_h1GgZgYhUpBxxfgqX9ijn60cbCfYI_zK0c6Bb6CkZg-pkpoNhcm_EHksZwaPBvazf1Wr4ZNSHU_94b2cbDodn5OptHxFs4jyv9FOZVEFF2YsIO43k_6dFQpsVQAy9luhkLKFl_6BkI5mlwBtEXiYChLJKCfzXaenltNjsKhPEOF9bNZIfEgfj')"></div>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<h3 class="font-bold text-slate-900 dark:text-slate-100">Wagyu Beef Burger</h3>
+<span class="material-symbols-outlined text-green-500 text-xl">check_circle</span>
+</div>
+<p class="text-sm text-slate-500 dark:text-slate-400">Identified from speech</p>
+</div>
+</div>
+<!-- Item Card 2 -->
+<div class="flex items-center gap-4 p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/50 shadow-sm">
+<div class="w-16 h-16 rounded-lg overflow-hidden bg-slate-200 dark:bg-slate-800">
+<div class="w-full h-full bg-cover bg-center" data-alt="Classic glass of Coca Cola with ice" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBDQ-Dkn9Nh28oLSTkm5z1QcF6pHP0lIjrUSGd1c4GeqCbgFizkmrFFW8v5CfD7swu2F0aI1WSNBCcejnkkIjOoq3u9G1S-71tXB6_wUgwM8gBApfr5Gim6bkAtvxxqoIdfrLKWooyj9pCZJrng86tDI2juvG2pjTdidXW5h_ydw1y3lt7zWSAqOrE7LiOAG0HATy8S5rHmEKjA53QLu1AoTRlG7t0uEpYDlOZJIIZM3W5mShmxDGXDhVtvAeLkIqMc0jcT2ttYmDbF')"></div>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<h3 class="font-bold text-slate-900 dark:text-slate-100">Coca Cola (330ml)</h3>
+<span class="material-symbols-outlined text-green-500 text-xl">check_circle</span>
+</div>
+<p class="text-sm text-slate-500 dark:text-slate-400">Identified from speech</p>
+</div>
+</div>
+<!-- Progress indicator for remaining sentence -->
+<div class="p-4 rounded-xl border border-dashed border-slate-300 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-800/30 flex items-center justify-center">
+<p class="text-sm text-slate-400 italic">Processing delivery instructions...</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="border-t border-slate-200 dark:border-slate-800 bg-background-light dark:bg-background-dark pb-8 pt-2">
+<div class="flex justify-around items-center px-4 max-w-lg mx-auto">
+<a class="flex flex-col items-center gap-1 p-2 text-slate-400 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[10px] font-medium uppercase tracking-tighter">Home</span>
+</a>
+<a class="flex flex-col items-center gap-1 p-2 text-slate-400 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="text-[10px] font-medium uppercase tracking-tighter">Orders</span>
+</a>
+<div class="relative -top-6">
+<div class="p-4 bg-primary rounded-full shadow-lg shadow-primary/40 ring-4 ring-background-light dark:ring-background-dark">
+<span class="material-symbols-outlined text-white text-3xl">mic</span>
+</div>
+</div>
+<a class="flex flex-col items-center gap-1 p-2 text-slate-400 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+<span class="text-[10px] font-medium uppercase tracking-tighter">Wallet</span>
+</a>
+<a class="flex flex-col items-center gap-1 p-2 text-primary font-bold" href="#">
+<span class="material-symbols-outlined">smart_toy</span>
+<span class="text-[10px] font-medium uppercase tracking-tighter">Assistant</span>
+</a>
+</div>
+</nav>
+</body></html>

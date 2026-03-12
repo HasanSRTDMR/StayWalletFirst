@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>StayWallet - Merchant Directory</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0f45b3",
+                        "accent": "#d4af37", // Gold accent for high-end feel
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .custom-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display">
+<div class="relative flex min-h-screen w-full max-w-[480px] mx-auto flex-col bg-background-light dark:bg-background-dark overflow-x-hidden border-x border-slate-200 dark:border-slate-800">
+<!-- Header -->
+<div class="sticky top-0 z-20 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md">
+<div class="flex items-center p-4 justify-between">
+<div class="text-slate-900 dark:text-slate-100 flex size-10 shrink-0 items-center justify-center rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors cursor-pointer">
+<span class="material-symbols-outlined">arrow_back</span>
+</div>
+<h2 class="text-slate-900 dark:text-slate-100 text-lg font-bold leading-tight tracking-tight flex-1 text-center">Local Directory</h2>
+<div class="flex w-10 items-center justify-end">
+<button class="flex size-10 items-center justify-center rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors text-primary dark:text-accent">
+<span class="material-symbols-outlined">map</span>
+</button>
+</div>
+</div>
+<!-- Search Bar -->
+<div class="px-4 pb-4">
+<label class="flex flex-col min-w-40 h-12 w-full">
+<div class="flex w-full flex-1 items-stretch rounded-xl h-full border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/50">
+<div class="text-slate-400 flex items-center justify-center pl-4">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden text-slate-900 dark:text-slate-100 focus:outline-0 focus:ring-0 border-none bg-transparent h-full placeholder:text-slate-500 px-4 pl-2 text-base font-normal leading-normal" placeholder="Search merchants, dining, tours..."/>
+</div>
+</label>
+</div>
+<!-- Category Filters -->
+<div class="flex gap-3 px-4 pb-4 overflow-x-auto custom-scrollbar">
+<div class="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-full bg-primary text-white px-4 cursor-pointer">
+<span class="material-symbols-outlined text-[20px]">restaurant</span>
+<p class="text-sm font-semibold">Dining</p>
+</div>
+<div class="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 px-4 cursor-pointer border border-transparent hover:border-primary/30 transition-all">
+<span class="material-symbols-outlined text-[20px]">shopping_bag</span>
+<p class="text-sm font-medium">Shopping</p>
+</div>
+<div class="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 px-4 cursor-pointer border border-transparent hover:border-primary/30 transition-all">
+<span class="material-symbols-outlined text-[20px]">explore</span>
+<p class="text-sm font-medium">Tours</p>
+</div>
+<div class="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 px-4 cursor-pointer border border-transparent hover:border-primary/30 transition-all">
+<span class="material-symbols-outlined text-[20px]">spa</span>
+<p class="text-sm font-medium">Spa</p>
+</div>
+</div>
+</div>
+<!-- Content Area -->
+<div class="flex-1 px-4 space-y-6 pb-24">
+<div class="flex items-center justify-between pt-2">
+<h3 class="text-slate-900 dark:text-slate-100 text-xl font-bold tracking-tight">Exclusive Offers</h3>
+<span class="text-primary dark:text-accent text-sm font-semibold cursor-pointer">See All</span>
+</div>
+<!-- Merchant Card 1: Dining -->
+<div class="group relative flex flex-col gap-3 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm">
+<div class="relative h-48 w-full overflow-hidden">
+<img class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Modern upscale restaurant interior with warm lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3Pqboom20Vu5F-AxHLP7fechE-47WF0J_WVBdOhij03i9WotR4lruNiGuq2IOxjk4Egw3EtEnuILob9XSURU13tDH-1NFQAJplUbeNOZOsO4wgEqa1SMM4vKXyQLKXT5whO37BCNXQPipauGMLowV0uhxJuL9DI3P-VSPAP3mQq7NEox2R7EKOZMnt9npwONZXdHg7L8mYQ5pDPmD3SIUuawImIHighJOHizxIxNLB4uJ7FLRlCLUUSEu0f2Bt-JgpgnxPkkNnHiE"/>
+<div class="absolute top-3 right-3 bg-accent text-slate-900 px-3 py-1 rounded-full text-xs font-bold shadow-lg flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] fill-current">star</span>
+                        15% Off with StayWallet
+                    </div>
+<div class="absolute bottom-3 left-3 bg-black/50 backdrop-blur-md text-white px-2 py-1 rounded-lg text-xs font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">location_on</span>
+                        0.4 km away
+                    </div>
+</div>
+<div class="p-4 pt-1">
+<div class="flex justify-between items-start">
+<div>
+<h4 class="text-slate-900 dark:text-slate-100 text-lg font-bold">Mirage Grill</h4>
+<p class="text-slate-500 dark:text-slate-400 text-sm">Fine Dining • International Cuisine</p>
+</div>
+<div class="flex items-center gap-1 text-accent font-bold">
+<span class="material-symbols-outlined text-[18px] fill-current">star</span>
+<span>4.9</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Merchant Card 2: Shopping -->
+<div class="group relative flex flex-col gap-3 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm">
+<div class="relative h-48 w-full overflow-hidden">
+<img class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Luxury boutique shopping mall interior" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVpNvXrkl2AX7_U1Ty3edbo-NTmslskRHSW20FK7szY500CjAOPsE6fk0eXjlXnsUYs1M-HktoB7VmeKOX85kztcJ81WzFtN5D_OiOqPMAd_HJS9On-X1JKADfutggn2vEP9CoDYXk1c-raPyuZ3dWGHHkbEcfHdjAIQpDGe7ic9hJxaMlS7esWGePTGkcz5dxF3QkddjEzrcWWVjaKJVlrPoLk0ijAWlcYnqmk8dln9USSH4kIPBzV-UmyDQ5udJoGSGh5PcZVLAS"/>
+<div class="absolute top-3 right-3 bg-accent text-slate-900 px-3 py-1 rounded-full text-xs font-bold shadow-lg flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] fill-current">star</span>
+                        10% Off with StayWallet
+                    </div>
+<div class="absolute bottom-3 left-3 bg-black/50 backdrop-blur-md text-white px-2 py-1 rounded-lg text-xs font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">location_on</span>
+                        1.2 km away
+                    </div>
+</div>
+<div class="p-4 pt-1">
+<div class="flex justify-between items-start">
+<div>
+<h4 class="text-slate-900 dark:text-slate-100 text-lg font-bold">Dubai Mall Luxury Shop</h4>
+<p class="text-slate-500 dark:text-slate-400 text-sm">Fashion • Accessories • Premium Brands</p>
+</div>
+<div class="flex items-center gap-1 text-accent font-bold">
+<span class="material-symbols-outlined text-[18px] fill-current">star</span>
+<span>4.8</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Merchant Card 3: Tours -->
+<div class="group relative flex flex-col gap-3 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm">
+<div class="relative h-48 w-full overflow-hidden">
+<img class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Desert safari adventure with land rover in dunes" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_KzdNrcVP_TrzSZ63H9OvriQwGa1fASNlxGsf9ASaWkRLyC20jMzrMBcV3CM7cmtOmnsmwp2nPHWSI2bEnvUQ4orCWvGYhBelF7ag7rSXZ5B7ANYeIx1aOV06YXkmJjkB-76RcqTmeNUy0bkbFHcaQFvoUR6JWtF7Mj896iD9mTtz27jNgFcMCF5okfyGg18fHSUtT6sYi9lczpfvGXeiEccETw59Vm1oH5I-FuHQGeieRCE3rBLsnD_kpb0TTk13yU0xObAfkkGK"/>
+<div class="absolute top-3 right-3 bg-accent text-slate-900 px-3 py-1 rounded-full text-xs font-bold shadow-lg flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] fill-current">star</span>
+                        20% Off with StayWallet
+                    </div>
+<div class="absolute bottom-3 left-3 bg-black/50 backdrop-blur-md text-white px-2 py-1 rounded-lg text-xs font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">location_on</span>
+                        5.0 km away
+                    </div>
+</div>
+<div class="p-4 pt-1">
+<div class="flex justify-between items-start">
+<div>
+<h4 class="text-slate-900 dark:text-slate-100 text-lg font-bold">Desert Safari Tours</h4>
+<p class="text-slate-500 dark:text-slate-400 text-sm">Adventure • Cultural • Evening Tours</p>
+</div>
+<div class="flex items-center gap-1 text-accent font-bold">
+<span class="material-symbols-outlined text-[18px] fill-current">star</span>
+<span>5.0</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Navigation Bar -->
+<div class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[480px] z-30">
+<div class="flex items-center justify-around border-t border-slate-200 dark:border-slate-800 bg-white/90 dark:bg-slate-900/95 backdrop-blur-lg px-2 py-3 shadow-2xl">
+<a class="flex flex-col items-center gap-1 text-slate-400 hover:text-primary dark:hover:text-accent transition-colors flex-1" href="#">
+<span class="material-symbols-outlined">home</span>
+<p class="text-[10px] font-bold uppercase tracking-wider">Home</p>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 hover:text-primary dark:hover:text-accent transition-colors flex-1" href="#">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+<p class="text-[10px] font-bold uppercase tracking-wider">Wallet</p>
+</a>
+<a class="flex flex-col items-center gap-1 text-primary dark:text-accent flex-1" href="#">
+<span class="material-symbols-outlined fill-current">explore</span>
+<p class="text-[10px] font-bold uppercase tracking-wider">Directory</p>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 hover:text-primary dark:hover:text-accent transition-colors flex-1" href="#">
+<span class="material-symbols-outlined">person</span>
+<p class="text-[10px] font-bold uppercase tracking-wider">Profile</p>
+</a>
+</div>
+</div>
+</div>
+</body></html>

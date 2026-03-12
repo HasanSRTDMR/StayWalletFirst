@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Exchange Currency - StayWallet</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#d4af37", // Gold accent for premium feel
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#0a0e17",
+                        "slate-custom": {
+                            "800": "#1e293b",
+                            "900": "#0f172a"
+                        }
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "8px", 
+                        "lg": "8px", 
+                        "xl": "12px", 
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .glass-card {
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .numpad-btn {
+            @apply flex items-center justify-center text-2xl font-medium h-16 w-full rounded-lg hover:bg-slate-800 active:scale-95 transition-all;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen flex flex-col max-w-md mx-auto relative overflow-hidden">
+<!-- Top Navigation -->
+<header class="flex items-center justify-between px-6 py-4">
+<button class="flex items-center justify-center size-10 rounded-full bg-slate-800/50 text-slate-100">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="text-lg font-bold tracking-tight">Exchange Currency</h1>
+<button class="flex items-center justify-center size-10 rounded-full bg-slate-800/50 text-slate-100">
+<span class="material-symbols-outlined">info</span>
+</button>
+</header>
+<main class="flex-1 px-6 pt-2 pb-8 flex flex-col gap-4">
+<!-- From Section -->
+<div class="glass-card rounded-lg p-5 relative">
+<div class="flex justify-between items-center mb-4">
+<span class="text-xs font-semibold uppercase tracking-wider text-slate-400">From</span>
+<span class="text-xs text-slate-400">Balance: <span class="text-slate-100">$12,450.00</span></span>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-3 bg-slate-800/80 p-2 pr-4 rounded-full border border-white/5 cursor-pointer">
+<div class="size-8 rounded-full overflow-hidden bg-slate-700 flex items-center justify-center">
+<img class="w-full h-full object-cover" data-alt="US Dollar flag icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDca87KiXA4Wel1Chi_xk9BpIU8Zvmgic89swulP3u_iGyeOr-glu-ZdDALjhFxFxjQf5lTQN3DTuINSyksEtzGPMjb_qkmlZPD49eLvb7fROlztDNTdrlbg8GXBRktm8nRNshW47iYXOyiVU1fm07nWUziKsMUSgv4T7hzUAzfzUdB3ZmoHtGC0gCrl4g3Gx8_ZOLJlj4zxUT0jgK_rQb3LuiV_KQnjys4fZ6QVmTkQnZ8xgemWgb2ziic-xHPOG3podY1MxU8aXAH"/>
+</div>
+<span class="font-bold text-lg">USD</span>
+<span class="material-symbols-outlined text-slate-400 text-sm">expand_more</span>
+</div>
+<div class="flex-1 text-right">
+<input class="bg-transparent border-none text-right text-3xl font-bold p-0 focus:ring-0 w-full text-slate-100" type="text" value="1,250"/>
+</div>
+</div>
+</div>
+<!-- Swap Icon -->
+<div class="relative h-2 z-10">
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+<button class="size-12 bg-primary rounded-full flex items-center justify-center shadow-lg shadow-primary/20 border-4 border-background-dark text-slate-900">
+<span class="material-symbols-outlined font-bold">swap_vert</span>
+</button>
+</div>
+</div>
+<!-- To Section -->
+<div class="glass-card rounded-lg p-5">
+<div class="flex justify-between items-center mb-4">
+<span class="text-xs font-semibold uppercase tracking-wider text-slate-400">To</span>
+<span class="text-xs text-slate-400">Rate: <span class="text-primary">1 USD = 3.67 AED</span></span>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-3 bg-slate-800/80 p-2 pr-4 rounded-full border border-white/5 cursor-pointer">
+<div class="size-8 rounded-full overflow-hidden bg-slate-700 flex items-center justify-center">
+<img class="w-full h-full object-cover" data-alt="UAE Dirham flag icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBVrzKfQQphE0Q1svsdzRNe84I1sSq0smPmrNGtH5Qksxi_pGDo0rNfixmM6im-fPM9B9GkGoiK7-yfSJg2hdFO95kUKQmTwYfMOVKcackjlTVb_RHrnSLPETBCTEGKQ8J1rW-b6mhtP_uQ6oxBN-8el4CEGcQlYd6D-4oXGctvQ1_Tb4iCYuwMGaMhJYNFPmuzHUjiuLYc166ptw362VS1hviyjFe0tDb02sIxXPUPtljFMaglqVAK948T2SbAcR5uEa7jq3uc8f-I"/>
+</div>
+<span class="font-bold text-lg">AED</span>
+<span class="material-symbols-outlined text-slate-400 text-sm">expand_more</span>
+</div>
+<div class="flex-1 text-right">
+<span class="text-3xl font-bold text-slate-100">4,587.50</span>
+</div>
+</div>
+</div>
+<!-- Exchange Details -->
+<div class="flex flex-col gap-2 px-1 py-2">
+<div class="flex justify-between text-sm">
+<span class="text-slate-400">Exchange Fee (0.5%)</span>
+<span class="text-slate-100 font-medium">$6.25</span>
+</div>
+<div class="flex justify-between text-sm">
+<span class="text-slate-400">Estimated Arrival</span>
+<span class="text-slate-100 font-medium">Instant</span>
+</div>
+</div>
+<!-- Numeric Keypad (Integrated Style) -->
+<div class="grid grid-cols-3 gap-2 mt-auto">
+<button class="numpad-btn">1</button>
+<button class="numpad-btn">2</button>
+<button class="numpad-btn">3</button>
+<button class="numpad-btn">4</button>
+<button class="numpad-btn">5</button>
+<button class="numpad-btn">6</button>
+<button class="numpad-btn">7</button>
+<button class="numpad-btn">8</button>
+<button class="numpad-btn">9</button>
+<button class="numpad-btn">.</button>
+<button class="numpad-btn">0</button>
+<button class="numpad-btn text-primary">
+<span class="material-symbols-outlined">backspace</span>
+</button>
+</div>
+<!-- Action Button -->
+<div class="mt-6">
+<button class="w-full bg-primary hover:bg-primary/90 text-slate-900 font-bold py-4 rounded-lg shadow-xl shadow-primary/10 flex items-center justify-center gap-2 transition-transform active:scale-[0.98]">
+                Confirm Exchange
+                <span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</main>
+<!-- Decorative Gradient -->
+<div class="absolute top-0 right-0 -z-10 w-64 h-64 bg-primary/5 blur-[100px] rounded-full"></div>
+<div class="absolute bottom-0 left-0 -z-10 w-64 h-64 bg-primary/5 blur-[100px] rounded-full"></div>
+</body></html>

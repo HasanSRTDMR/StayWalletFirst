@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Order Tracking - StayWallet</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0f45b3",
+                        "accent-gold": "#d4af37",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                        "surface-dark": "#1c222e",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .step-active { color: #d4af37; }
+        .step-line { width: 2px; background: linear-gradient(to bottom, #d4af37, #334155); }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display min-h-screen flex flex-col">
+<!-- Header -->
+<header class="sticky top-0 z-10 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+<div class="flex items-center p-4 justify-between">
+<button class="text-slate-900 dark:text-slate-100 flex items-center justify-center w-10 h-10 rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<div class="flex flex-col items-center">
+<h2 class="text-slate-900 dark:text-slate-100 text-lg font-bold leading-tight">Order #SW-9821</h2>
+<span class="text-accent-gold text-xs font-semibold uppercase tracking-wider">Room Service</span>
+</div>
+<button class="text-slate-900 dark:text-slate-100 flex items-center justify-center w-10 h-10 rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</header>
+<main class="flex-1 overflow-y-auto pb-24">
+<!-- Live Status Card -->
+<div class="p-4">
+<div class="bg-surface-dark rounded-xl p-6 border border-slate-800 shadow-xl overflow-hidden relative">
+<div class="absolute top-0 right-0 p-4">
+<div class="flex items-center gap-1 bg-primary/20 text-primary px-3 py-1 rounded-full text-xs font-bold animate-pulse">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+</span>
+                        LIVE
+                    </div>
+</div>
+<h3 class="text-slate-100 text-2xl font-bold mb-1">On its way</h3>
+<p class="text-slate-400 text-sm mb-6">Estimated arrival: <span class="text-white font-semibold">12-15 mins</span></p>
+<!-- Map View Placeholder -->
+<div class="relative w-full h-48 rounded-lg overflow-hidden mb-6 bg-slate-800">
+<img class="w-full h-full object-cover opacity-60 grayscale brightness-50" data-alt="Modern dark stylized hotel property map with delivery route" data-location="San Francisco" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAlJHYW7yVigXRaZAyNf9aFklvn6-wA-dLJh5JSoWMIUxg73NoeuupGRMG2RMY8YSO2ZJHju4y3V8vP_l5dpsTfWUcA41ehwneQL31KMWQvjIMwd72_RALDcK6mOefOJdM5UmaSlVdckBda4EZrp9qGRsv_9dNEJsA7ktCHnJVWumP6vHimeEzjznlNs4_wYofqyoQiGyU8UNMQxfh81337Ng2YCN1GKwT6Q2RhetoeOPN6KHAYXBGzjYtDg0xzRo-wkyjF5_74f7mc"/>
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="relative">
+<div class="absolute -top-12 -left-6 bg-accent-gold text-background-dark text-[10px] font-bold px-2 py-1 rounded shadow-lg after:content-[''] after:absolute after:top-full after:left-1/2 after:-ml-1 after:border-4 after:border-transparent after:border-t-accent-gold">
+                                Courier
+                            </div>
+<span class="material-symbols-outlined text-accent-gold text-4xl drop-shadow-[0_0_8px_rgba(212,175,55,0.8)]">moped</span>
+</div>
+</div>
+</div>
+<!-- Order Content Preview -->
+<div class="flex items-center gap-3 bg-slate-900/50 p-3 rounded-lg border border-slate-800/50">
+<div class="w-12 h-12 rounded-lg bg-slate-800 flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Juicy wagyu beef burger with gourmet toppings" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVCrsYXeSd2i293Y7QEdzBQg6GAPBTE6ZImgB1MEyJ5LCHtsDtZGQRbBOazuj8usV5RD96TfBPYFsEiwHlq3Khm-azZF7dXsOk2sApz0PChyorBqCXLqnMQphVdUKF-0BJwpzElPxQJE9PxQSyVAaySn4CAoBBn5sgrb_dAQ3-CKNZXCp2-yfseggAJm90W7_SipVzw2VIUz3ihDkABNXPPt24gVtSMXUmhg4knLnimvGrHjUeOeezX-X-Vh1SC33h0Dl0UlFN48p7"/>
+</div>
+<div class="flex-1">
+<p class="text-sm font-medium text-slate-100">Wagyu Beef Burger &amp; Coke</p>
+<p class="text-xs text-slate-400">1x Regular, 1x 330ml</p>
+</div>
+<button class="text-primary text-sm font-bold px-3 py-1 hover:bg-primary/10 rounded-lg transition-colors">
+                        Details
+                    </button>
+</div>
+</div>
+</div>
+<!-- Tracking Timeline -->
+<div class="px-6 py-4">
+<h4 class="text-slate-400 text-xs font-bold uppercase tracking-widest mb-6">Order Progress</h4>
+<div class="space-y-0">
+<!-- Step 1: Completed -->
+<div class="flex gap-4">
+<div class="flex flex-col items-center">
+<div class="flex h-10 w-10 items-center justify-center rounded-full bg-accent-gold/20 text-accent-gold ring-1 ring-accent-gold">
+<span class="material-symbols-outlined">check_circle</span>
+</div>
+<div class="w-[2px] h-12 bg-accent-gold"></div>
+</div>
+<div class="py-1">
+<p class="text-slate-100 font-semibold">Order Received</p>
+<p class="text-slate-500 text-sm">12:30 PM • We've started processing your order</p>
+</div>
+</div>
+<!-- Step 2: Completed -->
+<div class="flex gap-4">
+<div class="flex flex-col items-center">
+<div class="flex h-10 w-10 items-center justify-center rounded-full bg-accent-gold/20 text-accent-gold ring-1 ring-accent-gold">
+<span class="material-symbols-outlined">cooking</span>
+</div>
+<div class="w-[2px] h-12 bg-accent-gold"></div>
+</div>
+<div class="py-1">
+<p class="text-slate-100 font-semibold">Preparing Your Meal</p>
+<p class="text-slate-500 text-sm">12:45 PM • Chef is crafting your Wagyu Burger</p>
+</div>
+</div>
+<!-- Step 3: Current -->
+<div class="flex gap-4">
+<div class="flex flex-col items-center">
+<div class="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-white shadow-[0_0_15px_rgba(15,69,179,0.4)]">
+<span class="material-symbols-outlined">delivery_dining</span>
+</div>
+<div class="w-[2px] h-12 bg-slate-800"></div>
+</div>
+<div class="py-1">
+<p class="text-primary font-bold">Out for Delivery</p>
+<p class="text-slate-400 text-sm italic">In transit to Room 402</p>
+</div>
+</div>
+<!-- Step 4: Pending -->
+<div class="flex gap-4">
+<div class="flex flex-col items-center">
+<div class="flex h-10 w-10 items-center justify-center rounded-full bg-slate-800 text-slate-600">
+<span class="material-symbols-outlined">inventory_2</span>
+</div>
+</div>
+<div class="py-1">
+<p class="text-slate-600 font-medium">Delivered</p>
+<p class="text-slate-600 text-sm">Pending arrival</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Help Action -->
+<div class="px-4 mt-4">
+<button class="w-full flex items-center justify-center gap-2 py-4 rounded-xl border border-slate-800 text-slate-400 font-medium hover:bg-slate-800 transition-colors">
+<span class="material-symbols-outlined text-lg">support_agent</span>
+                Contact Concierge for help
+            </button>
+</div>
+</main>
+<!-- Bottom Navigation -->
+<nav class="fixed bottom-0 left-0 right-0 border-t border-slate-200 dark:border-slate-800 bg-background-light dark:bg-background-dark/95 backdrop-blur-lg px-4 pb-6 pt-2 z-20">
+<div class="flex justify-between items-center max-w-md mx-auto">
+<a class="flex flex-col items-center gap-1 text-slate-500 dark:text-slate-500 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[10px] font-medium">Home</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-500 dark:text-slate-500 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+<span class="text-[10px] font-medium">Wallet</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<div class="relative">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="absolute -top-1 -right-1 flex h-3 w-3">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-3 w-3 bg-primary"></span>
+</span>
+</div>
+<span class="text-[10px] font-bold">Orders</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-500 dark:text-slate-500 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-medium">Profile</span>
+</a>
+</div>
+</nav>
+</body></html>

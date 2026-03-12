@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>StayWallet Notifications</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0f45b3",
+                        "accent": "#d4af37",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                        "surface-dark": "#1c2433",
+                        "border-dark": "#2d3748"
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display antialiased text-slate-900 dark:text-slate-100">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden max-w-md mx-auto shadow-2xl border-x border-border-dark/30">
+<!-- Background Dashboard (Simulated) -->
+<div class="flex-1 flex flex-col p-4 opacity-40 grayscale-[20%]">
+<header class="flex justify-between items-center mb-6">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white">
+<span class="material-symbols-outlined">account_circle</span>
+</div>
+<div>
+<p class="text-xs text-slate-400">Welcome back,</p>
+<p class="font-bold">Primary Member</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-slate-400">search</span>
+</header>
+<div class="rounded-xl bg-gradient-to-br from-primary to-blue-900 p-6 mb-6 shadow-lg">
+<p class="text-xs text-blue-200 uppercase tracking-widest mb-1">Total Balance</p>
+<h3 class="text-3xl font-bold mb-4">$12,450.00</h3>
+<div class="flex justify-between items-end">
+<p class="text-sm">**** 4421</p>
+<span class="material-symbols-outlined">credit_card</span>
+</div>
+</div>
+<div class="grid grid-cols-4 gap-4 mb-6">
+<div class="flex flex-col items-center gap-2">
+<div class="w-12 h-12 rounded-xl bg-surface-dark flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">send</span>
+</div>
+<p class="text-[10px] text-center">Send</p>
+</div>
+<div class="flex flex-col items-center gap-2">
+<div class="w-12 h-12 rounded-xl bg-surface-dark flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">add_box</span>
+</div>
+<p class="text-[10px] text-center">Top Up</p>
+</div>
+<div class="flex flex-col items-center gap-2">
+<div class="w-12 h-12 rounded-xl bg-surface-dark flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">analytics</span>
+</div>
+<p class="text-[10px] text-center">Stats</p>
+</div>
+<div class="flex flex-col items-center gap-2">
+<div class="w-12 h-12 rounded-xl bg-surface-dark flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">more_horiz</span>
+</div>
+<p class="text-[10px] text-center">More</p>
+</div>
+</div>
+<div class="space-y-4">
+<p class="font-semibold">Recent Transactions</p>
+<div class="flex items-center gap-4 bg-surface-dark/50 p-3 rounded-lg">
+<div class="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center text-accent">
+<span class="material-symbols-outlined">local_cafe</span>
+</div>
+<div class="flex-1">
+<p class="text-sm font-medium">Starbucks Coffee</p>
+<p class="text-xs text-slate-500">2 hours ago</p>
+</div>
+<p class="font-bold">-$4.50</p>
+</div>
+</div>
+</div>
+<!-- Dark Overlay -->
+<div class="absolute inset-0 bg-background-dark/80 backdrop-blur-sm flex flex-col justify-center items-center p-6 z-10">
+<!-- High-Fidelity Notification Card -->
+<div class="w-full bg-surface-dark border border-white/10 rounded-2xl shadow-2xl overflow-hidden ring-1 ring-white/5">
+<!-- Header with Alert Icon -->
+<div class="bg-gradient-to-r from-primary/20 to-transparent p-4 flex items-center justify-between border-b border-white/5">
+<div class="flex items-center gap-2">
+<div class="bg-primary/20 p-1.5 rounded-lg">
+<span class="material-symbols-outlined text-primary text-xl">notifications_active</span>
+</div>
+<span class="text-xs font-semibold uppercase tracking-wider text-primary/80">StayWallet Alert</span>
+</div>
+<span class="text-[10px] text-slate-500">Just Now</span>
+</div>
+<!-- Notification Content -->
+<div class="p-5">
+<div class="mb-4">
+<h2 class="text-xl font-bold text-slate-100 leading-tight">Transaction Alert</h2>
+<p class="text-slate-400 text-sm mt-1">Sarah Walker just spent <span class="text-slate-100 font-semibold">$42.00</span> at <span class="text-slate-100 font-semibold">Skyline Lounge</span></p>
+</div>
+<!-- Highlight Badges -->
+<div class="flex flex-col gap-2 mb-6">
+<div class="flex items-center gap-3 bg-accent/10 border border-accent/20 rounded-lg px-3 py-2">
+<span class="material-symbols-outlined text-accent text-lg">loyalty</span>
+<p class="text-xs text-accent font-medium">15% StayWallet Discount Applied</p>
+</div>
+<div class="flex items-center gap-3 bg-primary/10 border border-primary/20 rounded-lg px-3 py-2">
+<span class="material-symbols-outlined text-primary text-lg">stars</span>
+<p class="text-xs text-primary font-medium">+6.30 Points Earned</p>
+</div>
+</div>
+<!-- Quick Actions -->
+<div class="flex gap-3">
+<button class="flex-1 bg-primary hover:bg-primary/90 text-white py-2.5 rounded-lg text-sm font-semibold transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">visibility</span>
+                            View Details
+                        </button>
+<button class="flex-1 bg-slate-800 hover:bg-slate-700 text-slate-200 py-2.5 rounded-lg text-sm font-semibold border border-white/5 transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">settings_input_component</span>
+                            Adjust Limit
+                        </button>
+</div>
+</div>
+<!-- Map Context -->
+<div class="h-32 w-full relative">
+<div class="absolute inset-0 bg-center bg-cover" data-alt="Stylized dark map showing Skyline Lounge location" data-location="Chicago" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDFIozGsJMte1LIUukizSEmQn3gBRlKgyoVzlukap4Y9ynEfCFJI7ipoiqQvdc4XaZY2znm1Nx9zqg_GP1WPORLIQHdIg4TLj5XQ1tkmDIZDD_sHkF0QPnwj-t8oUtsAPAhVAcEyT743MNa_RsLpbk1JddxCJwmzL1fpj4gk6HToa9F9vlUo6uoPmErHQ5pZ51mfLplWEDoJ2DnIkva03ROKyr8eGmTNx7rBs9h1E3v2-wWND-IrQ488ERytA-Mj1YqskVb-upy3EP2');"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-dark via-transparent to-transparent"></div>
+<div class="absolute bottom-3 left-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-accent text-sm">location_on</span>
+<span class="text-[10px] font-medium text-slate-300">Downtown Skyline Lounge, 42nd Floor</span>
+</div>
+</div>
+</div>
+<!-- Dismiss Button -->
+<button class="mt-6 text-slate-500 hover:text-slate-300 transition-colors">
+<span class="material-symbols-outlined text-3xl">close</span>
+</button>
+</div>
+<!-- Bottom Navigation Bar -->
+<div class="mt-auto flex gap-2 border-t border-border-dark bg-background-dark px-4 pb-6 pt-2 z-20">
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-slate-500" href="#">
+<div class="flex h-8 items-center justify-center">
+<span class="material-symbols-outlined">home</span>
+</div>
+<p class="text-[10px] font-medium">Home</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-slate-500" href="#">
+<div class="flex h-8 items-center justify-center">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+</div>
+<p class="text-[10px] font-medium">Wallets</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-primary" href="#">
+<div class="flex h-8 items-center justify-center">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">notifications</span>
+</div>
+<p class="text-[10px] font-medium">Activity</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-slate-500" href="#">
+<div class="flex h-8 items-center justify-center">
+<span class="material-symbols-outlined">person</span>
+</div>
+<p class="text-[10px] font-medium">Profile</p>
+</a>
+</div>
+</div>
+</body></html>

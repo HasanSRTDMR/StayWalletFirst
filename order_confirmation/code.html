@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#0f45b3",
+              "background-light": "#f6f6f8",
+              "background-dark": "#101622",
+            },
+            fontFamily: {
+              "display": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<title>StayWallet - Order Confirmation</title>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
+<!-- Header -->
+<header class="flex items-center px-6 pt-8 pb-4 justify-between bg-background-light dark:bg-background-dark">
+<div class="flex items-center gap-3">
+<div class="bg-primary/20 p-2 rounded-lg">
+<span class="material-symbols-outlined text-primary">receipt_long</span>
+</div>
+<h1 class="text-xl font-bold tracking-tight">StayWallet</h1>
+</div>
+<button class="text-slate-500 dark:text-slate-400">
+<span class="material-symbols-outlined">close</span>
+</button>
+</header>
+<!-- Main Content -->
+<main class="flex-1 px-6 overflow-y-auto pb-40">
+<div class="mt-4 mb-8">
+<h2 class="text-3xl font-bold leading-tight mb-2">Does this look correct, Mr. Alexander?</h2>
+<p class="text-slate-500 dark:text-slate-400">Review your room service selection before we place the order.</p>
+</div>
+<!-- Order Items -->
+<div class="space-y-4 mb-8">
+<h3 class="text-sm font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Your Selection</h3>
+<div class="flex items-center justify-between p-4 bg-slate-100 dark:bg-slate-800/50 rounded-xl border border-slate-200 dark:border-slate-800">
+<div class="flex items-center gap-4">
+<div class="h-12 w-12 rounded-lg bg-slate-200 dark:bg-slate-700 flex items-center justify-center overflow-hidden">
+<img class="object-cover h-full w-full" data-alt="Gourmet wagyu beef burger on plate" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDC-helqkR8BpaitiytWGGqtMCxvDfAd07zG8EfmaPKhVCUITEPqZ71Ui-olHlTW2IFeTE3zIDBaobZXmaKMM65Fa3EiI8gOH87CO_lmHBKmhwjitdiqwV0KyvoFuLY3HkiNrDgnDvGYATuXpnJ54rlDWLXR47T7oGwCJAyfxKOJTuMs0kNgu9zA6slb3TjhDMchU3oD-QPnT4ffyAGP-NpEBSgk1Cr6Qiubqa127Jn6lXFWc6LCMKhTpZvmalFqenB7jYz4Ntjo_ZO"/>
+</div>
+<div>
+<p class="font-medium">Wagyu Beef Burger</p>
+<p class="text-sm text-slate-500">1x</p>
+</div>
+</div>
+<p class="font-medium">$28.00</p>
+</div>
+<div class="flex items-center justify-between p-4 bg-slate-100 dark:bg-slate-800/50 rounded-xl border border-slate-200 dark:border-slate-800">
+<div class="flex items-center gap-4">
+<div class="h-12 w-12 rounded-lg bg-slate-200 dark:bg-slate-700 flex items-center justify-center overflow-hidden">
+<img class="object-cover h-full w-full" data-alt="Classic coca cola glass bottle" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDE0S-yWx_VjvUFQEsmeyopPMh2FHpBL-TfyNwZ3r20IcjqEpVSaYhqxmWCAq4VDO5G-h6hf1pYjo7A4mE5dplYHSoMcvBTpAtQlVw0Ybf50tsuQNpLIHvj_UGYUBNclLF31OQd2c4ifNcU8KB3jTTNfeOTrrzu1yfO5XWH0JVopL6DRHM5PQ0PYVjpAAPAp9GBl5mbQNODIIXjbGe1Fwj_2TSAmOvb-nd01igNevOnx7DgIIr51B1CUT5cyedvzeoS7rP_a12H22hf"/>
+</div>
+<div>
+<p class="font-medium">Coca Cola</p>
+<p class="text-sm text-slate-500">1x</p>
+</div>
+</div>
+<p class="font-medium">$6.00</p>
+</div>
+</div>
+<!-- Summary -->
+<div class="bg-primary/5 rounded-2xl p-6 border border-primary/10">
+<div class="flex justify-between mb-3">
+<p class="text-slate-500 dark:text-slate-400">Subtotal</p>
+<p class="font-medium">$34.00</p>
+</div>
+<div class="flex justify-between mb-3 text-emerald-500 dark:text-emerald-400">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">verified</span>
+<p class="text-sm font-medium">StayWallet Discount (15%)</p>
+</div>
+<p class="font-medium">-$5.10</p>
+</div>
+<div class="h-px bg-slate-200 dark:bg-slate-800 my-4"></div>
+<div class="flex justify-between items-center">
+<p class="text-lg font-bold">Total</p>
+<p class="text-2xl font-bold text-primary">$28.90</p>
+</div>
+</div>
+</main>
+<!-- Bottom Actions & AI Status -->
+<div class="fixed bottom-0 left-0 right-0 bg-background-light dark:bg-background-dark border-t border-slate-200 dark:border-slate-800 px-6 pt-6 pb-8 space-y-6">
+<!-- Voice Wave Visualization -->
+<div class="flex items-center justify-center gap-1 h-8">
+<div class="w-1 h-3 bg-primary rounded-full opacity-40"></div>
+<div class="w-1 h-5 bg-primary rounded-full opacity-60"></div>
+<div class="w-1 h-8 bg-primary rounded-full opacity-100"></div>
+<div class="w-1 h-4 bg-primary rounded-full opacity-70"></div>
+<div class="w-1 h-6 bg-primary rounded-full opacity-90"></div>
+<div class="w-1 h-3 bg-primary rounded-full opacity-40"></div>
+<span class="ml-4 text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-[0.2em]">Listening: "Yes" or "Add something else"</span>
+</div>
+<div class="grid grid-cols-1 gap-3">
+<button class="w-full bg-primary hover:bg-primary/90 text-white font-bold py-4 rounded-xl shadow-lg shadow-primary/20 flex items-center justify-center gap-2 transition-all">
+<span>Confirm Order</span>
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+<!-- Bottom Navigation Bar Style Integration -->
+<div class="flex justify-around items-center pt-2">
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[10px] font-medium uppercase">Home</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined fill-1">receipt_long</span>
+<span class="text-[10px] font-medium uppercase">Orders</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+<span class="text-[10px] font-medium uppercase">Wallet</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-medium uppercase">Account</span>
+</a>
+</div>
+</div>
+</body></html>

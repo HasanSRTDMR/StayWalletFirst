@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>StayWallet - Post-Trip Report</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "primary": "#0f45b3",
+                "gold-accent": "#D4AF37",
+                "background-light": "#f6f6f8",
+                "background-dark": "#101622",
+              },
+              fontFamily: {
+                "display": ["Inter"]
+              },
+              borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+            },
+          },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="relative flex h-auto min-h-screen w-full max-w-md mx-auto flex-col bg-background-light dark:bg-background-dark overflow-x-hidden border-x border-slate-200 dark:border-slate-800">
+<!-- Header -->
+<div class="flex items-center p-4 pb-2 justify-between sticky top-0 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md z-10">
+<div class="text-slate-900 dark:text-slate-100 flex size-10 shrink-0 items-center justify-center cursor-pointer hover:bg-slate-200 dark:hover:bg-slate-800 rounded-full transition-colors">
+<span class="material-symbols-outlined">arrow_back</span>
+</div>
+<h2 class="text-slate-900 dark:text-slate-100 text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center">Japan Summer Trip</h2>
+<div class="flex w-10 items-center justify-end">
+<button class="text-slate-900 dark:text-slate-100 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">share</span>
+</button>
+</div>
+</div>
+<div class="px-4 py-2">
+<div class="flex items-center gap-2 mb-4">
+<span class="px-2 py-0.5 rounded bg-primary/20 text-primary text-[10px] font-bold uppercase tracking-wider">Completed</span>
+<span class="text-slate-500 dark:text-slate-400 text-xs">July 12 - July 24, 2023</span>
+</div>
+<!-- Main Expenditure Card -->
+<div class="flex flex-col gap-4 mb-6">
+<div class="flex flex-col gap-2 rounded-xl p-6 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm relative overflow-hidden">
+<div class="absolute top-0 right-0 p-4 opacity-10">
+<span class="material-symbols-outlined text-6xl">account_balance_wallet</span>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium leading-normal">Total Expenditure</p>
+<div class="flex items-baseline gap-1">
+<p class="text-slate-900 dark:text-slate-100 tracking-tight text-3xl font-bold leading-tight">$4,250.00</p>
+</div>
+<!-- Savings Sub-card -->
+<div class="mt-4 p-3 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">stars</span>
+<div>
+<p class="text-xs text-slate-500 dark:text-slate-400">Total Savings</p>
+<p class="text-sm font-bold text-primary">+$412.50 earned</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-primary text-sm">chevron_right</span>
+</div>
+</div>
+</div>
+<!-- Category Breakdown -->
+<div class="mb-8">
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-slate-900 dark:text-slate-100 text-base font-bold leading-tight">Spending Breakdown</h3>
+<span class="text-primary text-xs font-semibold cursor-pointer">View Details</span>
+</div>
+<div class="bg-white dark:bg-slate-900 rounded-xl p-5 border border-slate-200 dark:border-slate-800 shadow-sm">
+<div class="space-y-5">
+<!-- Stay -->
+<div class="space-y-2">
+<div class="flex justify-between items-center text-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-blue-500 text-lg">hotel</span>
+<span class="font-medium">Stay</span>
+</div>
+<span class="font-bold">$2,125.00</span>
+</div>
+<div class="h-2 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+<div class="h-full bg-blue-500 rounded-full" style="width: 50%;"></div>
+</div>
+</div>
+<!-- Food -->
+<div class="space-y-2">
+<div class="flex justify-between items-center text-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-orange-400 text-lg">restaurant</span>
+<span class="font-medium">Food</span>
+</div>
+<span class="font-bold">$850.00</span>
+</div>
+<div class="h-2 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+<div class="h-full bg-orange-400 rounded-full" style="width: 20%;"></div>
+</div>
+</div>
+<!-- Transport -->
+<div class="space-y-2">
+<div class="flex justify-between items-center text-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-emerald-500 text-lg">commute</span>
+<span class="font-medium">Transport</span>
+</div>
+<span class="font-bold">$1,062.50</span>
+</div>
+<div class="h-2 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+<div class="h-full bg-emerald-500 rounded-full" style="width: 25%;"></div>
+</div>
+</div>
+<!-- Misc -->
+<div class="space-y-2">
+<div class="flex justify-between items-center text-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-slate-400 text-lg">category</span>
+<span class="font-medium">Misc</span>
+</div>
+<span class="font-bold">$212.50</span>
+</div>
+<div class="h-2 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+<div class="h-full bg-slate-400 rounded-full" style="width: 5%;"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Transaction List -->
+<div class="mb-24">
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-slate-900 dark:text-slate-100 text-base font-bold leading-tight">Transactions</h3>
+<div class="flex items-center gap-1 text-slate-500 dark:text-slate-400 text-xs cursor-pointer">
+<span class="material-symbols-outlined text-sm">filter_list</span>
+<span>Filter</span>
+</div>
+</div>
+<div class="space-y-1">
+<!-- Transaction Item 1 -->
+<div class="flex items-center justify-between p-4 bg-white dark:bg-slate-900/50 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors border-b border-slate-100 dark:border-slate-800/50 rounded-lg">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 dark:text-blue-400">
+<span class="material-symbols-outlined">apartment</span>
+</div>
+<div>
+<p class="text-sm font-bold">Park Hyatt Tokyo</p>
+<p class="text-xs text-slate-500">July 22 • Accommodation</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-sm font-bold">$1,240.00</p>
+<p class="text-[10px] text-emerald-500 font-medium">Reimbursable</p>
+</div>
+</div>
+<!-- Transaction Item 2 -->
+<div class="flex items-center justify-between p-4 bg-white dark:bg-slate-900/50 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors border-b border-slate-100 dark:border-slate-800/50 rounded-lg">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-full bg-orange-100 dark:bg-orange-900/30 flex items-center justify-center text-orange-600 dark:text-orange-400">
+<span class="material-symbols-outlined">restaurant</span>
+</div>
+<div>
+<p class="text-sm font-bold">Sukiyabashi Jiro</p>
+<p class="text-xs text-slate-500">July 20 • Dining</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-sm font-bold">$340.00</p>
+<p class="text-[10px] text-slate-400 font-medium">Personal</p>
+</div>
+</div>
+<!-- Transaction Item 3 -->
+<div class="flex items-center justify-between p-4 bg-white dark:bg-slate-900/50 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors border-b border-slate-100 dark:border-slate-800/50 rounded-lg">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-full bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center text-emerald-600 dark:text-emerald-400">
+<span class="material-symbols-outlined">train</span>
+</div>
+<div>
+<p class="text-sm font-bold">JR East Rail Pass</p>
+<p class="text-xs text-slate-500">July 18 • Transport</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-sm font-bold">$450.00</p>
+<p class="text-[10px] text-emerald-500 font-medium">Reimbursable</p>
+</div>
+</div>
+</div>
+<button class="w-full py-3 mt-4 text-sm text-slate-500 dark:text-slate-400 font-medium border border-dashed border-slate-300 dark:border-slate-700 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 transition-all">
+                    Show all 24 transactions
+                </button>
+</div>
+</div>
+<!-- Sticky Bottom Actions -->
+<div class="fixed bottom-0 w-full max-w-md bg-background-light dark:bg-background-dark border-t border-slate-200 dark:border-slate-800 px-4 py-4 z-20">
+<button class="w-full bg-primary hover:bg-primary/90 text-white font-bold py-4 rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-primary/20 transition-all">
+<span class="material-symbols-outlined">picture_as_pdf</span>
+                Download PDF Report
+            </button>
+</div>
+<!-- Navigation Bar (Template Reference) -->
+<div class="mt-auto flex gap-2 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-4 pb-3 pt-2 safe-area-bottom">
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-400 dark:text-slate-500" href="#">
+<span class="material-symbols-outlined">home</span>
+<p class="text-[10px] font-medium leading-normal">Home</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">map</span>
+<p class="text-[10px] font-medium leading-normal">Trips</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-400 dark:text-slate-500" href="#">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+<p class="text-[10px] font-medium leading-normal">Wallet</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-400 dark:text-slate-500" href="#">
+<span class="material-symbols-outlined">person</span>
+<p class="text-[10px] font-medium leading-normal">Profile</p>
+</a>
+</div>
+</div>
+</body></html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Identity Verification - StayWallet</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0f45b3",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
+<!-- Top Navigation -->
+<header class="flex items-center bg-background-light dark:bg-background-dark p-4 sticky top-0 z-10 border-b border-slate-200 dark:border-slate-800">
+<button class="text-slate-900 dark:text-slate-100 flex size-10 items-center justify-center hover:bg-slate-200 dark:hover:bg-slate-800 rounded-full transition-colors">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h2 class="text-slate-900 dark:text-slate-100 text-lg font-bold leading-tight tracking-[-0.015em] ml-2">Identity Verification</h2>
+</header>
+<!-- Progress Indicator -->
+<div class="flex w-full flex-row items-center justify-center gap-3 py-6">
+<div class="h-2 w-2 rounded-full bg-slate-300 dark:bg-slate-700"></div>
+<div class="h-2 w-8 rounded-full bg-primary"></div>
+<div class="h-2 w-2 rounded-full bg-slate-300 dark:bg-slate-700"></div>
+</div>
+<main class="flex-1 px-4 max-w-md mx-auto w-full">
+<!-- Section: Passport Details -->
+<div class="mb-8">
+<h3 class="text-slate-900 dark:text-slate-100 text-lg font-bold leading-tight tracking-[-0.015em] mb-4">Passport Details</h3>
+<div class="bg-slate-100 dark:bg-slate-900/50 rounded-xl p-4 space-y-4 border border-slate-200 dark:border-slate-800">
+<div class="flex justify-between items-center">
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Name</p>
+<p class="text-slate-900 dark:text-slate-100 text-sm font-semibold">Mr. Alexander</p>
+</div>
+<div class="flex justify-between items-center">
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Passport No</p>
+<p class="text-slate-900 dark:text-slate-100 text-sm font-semibold tracking-widest">XXXXXX</p>
+</div>
+<div class="flex justify-between items-center">
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Nationality</p>
+<div class="flex items-center gap-2">
+<p class="text-slate-900 dark:text-slate-100 text-sm font-semibold">British</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Section: Face Verification -->
+<div class="mb-8 text-center">
+<h3 class="text-slate-900 dark:text-slate-100 text-lg font-bold leading-tight tracking-[-0.015em] text-left mb-6">Face Verification</h3>
+<div class="relative mx-auto w-48 h-48 rounded-full border-4 border-dashed border-primary/40 flex items-center justify-center bg-slate-100 dark:bg-slate-900/80 overflow-hidden group cursor-pointer">
+<div class="absolute inset-0 bg-primary/5 group-hover:bg-primary/10 transition-colors"></div>
+<div class="flex flex-col items-center">
+<span class="material-symbols-outlined text-primary text-5xl mb-2">face</span>
+<span class="text-xs font-semibold text-primary uppercase tracking-wider">Take Selfie</span>
+</div>
+<!-- Placeholder for camera stream -->
+<div class="hidden">
+<img class="w-full h-full object-cover" data-alt="Sample passport photo or user selfie placeholder" src="https://lh3.googleusercontent.com/aida-public/AB6AXuALNVh0rj9YgUaKboKTvkEXRPYaIffRuKEM0E1Fl2fuEOkXJC7eukOemtxqqT5yuwRt4qpYV2aiRG-T6u8DS45QmdbgApENtejbnsWDivgjGSynI_9H9h30KBC8Aildi5iKkqiEMnirveKys6a7A7MkZKgzbRQ-KdUIATEuDC3uoxD7An9KuKK3oLwlBrccv9IfJr8WleiLiPsbLge3ALgh00NyEDMEmS_asf3DyGyIQSiV8PKhju-0jQuimdvn7dLFU6nGZNDmRgP0"/>
+</div>
+</div>
+<p class="mt-6 text-sm text-slate-500 dark:text-slate-400 px-4">
+                Please ensure your face is clearly visible within the circle and well-lit.
+            </p>
+</div>
+<!-- Activation Notice -->
+<div class="bg-primary/10 border border-primary/20 rounded-xl p-4 flex items-start gap-3">
+<span class="material-symbols-outlined text-primary">key</span>
+<div>
+<p class="text-sm font-semibold text-primary">Digital Key Activation</p>
+<p class="text-xs text-slate-600 dark:text-slate-400 mt-1">Your digital key will be automatically activated in the StayWallet app upon successful identity verification.</p>
+</div>
+</div>
+</main>
+<!-- Footer Action -->
+<footer class="p-4 mt-auto border-t border-slate-200 dark:border-slate-800 bg-background-light dark:bg-background-dark">
+<div class="max-w-md mx-auto w-full">
+<button class="w-full bg-primary hover:bg-primary/90 text-white font-bold py-4 rounded-xl shadow-lg transition-all active:scale-[0.98] flex items-center justify-center gap-2">
+<span>Complete Check-in</span>
+<span class="material-symbols-outlined text-lg">check_circle</span>
+</button>
+<p class="text-center text-[10px] text-slate-500 dark:text-slate-500 mt-3 uppercase tracking-widest font-bold">Secure Verification by StayWallet</p>
+</div>
+</footer>
+</body></html>

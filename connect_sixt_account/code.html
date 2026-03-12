@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0f45b3",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<title>Link Sixt Account - StayWallet</title>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="relative flex h-auto min-h-screen w-full max-w-md mx-auto flex-col bg-background-light dark:bg-background-dark overflow-x-hidden">
+<!-- Header Section -->
+<div class="flex items-center p-4 pb-2 justify-between">
+<button class="text-slate-900 dark:text-slate-100 flex size-10 shrink-0 items-center justify-center hover:bg-slate-200 dark:hover:bg-slate-800 rounded-full transition-colors">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h2 class="text-slate-900 dark:text-slate-100 text-lg font-bold leading-tight tracking-[-0.015em] flex-1 ml-4">Link Sixt Account</h2>
+</div>
+<!-- Logo/Visual Section -->
+<div class="flex w-full grow @container p-4">
+<div class="w-full aspect-[16/9] rounded-xl flex items-center justify-center bg-gradient-to-br from-orange-400 to-orange-600 dark:from-[#ff5f00] dark:to-[#cc4c00] overflow-hidden shadow-lg" data-alt="Official Sixt rental car logo on orange background">
+<!-- Fallback text-based logo if image is missing, styled like Sixt -->
+<span class="text-white text-6xl font-black italic tracking-tighter">SIXT</span>
+</div>
+</div>
+<!-- Content Section -->
+<div class="px-6 py-4">
+<h3 class="text-slate-900 dark:text-slate-100 tracking-tight text-2xl font-bold leading-tight text-center pb-6">
+                Sync your Platinum status, active rentals, and earn 3x StayWallet points on every booking.
+            </h3>
+<!-- Options List -->
+<div class="space-y-1">
+<label class="flex items-center gap-x-4 py-4 px-2 border-b border-slate-200 dark:border-slate-800 cursor-pointer hover:bg-slate-100 dark:hover:bg-slate-800/50 rounded-lg transition-colors">
+<div class="relative flex items-center">
+<input checked="" class="h-6 w-6 rounded border-slate-300 dark:border-slate-700 bg-transparent text-primary focus:ring-primary focus:ring-offset-0 focus:outline-none transition-all cursor-pointer" type="checkbox"/>
+</div>
+<div class="flex flex-col">
+<p class="text-slate-900 dark:text-slate-100 text-base font-semibold leading-none">Import active rentals</p>
+<p class="text-slate-500 dark:text-slate-400 text-sm mt-1">Automatically track current bookings</p>
+</div>
+</label>
+<label class="flex items-center gap-x-4 py-4 px-2 border-b border-slate-200 dark:border-slate-800 cursor-pointer hover:bg-slate-100 dark:hover:bg-slate-800/50 rounded-lg transition-colors">
+<div class="relative flex items-center">
+<input checked="" class="h-6 w-6 rounded border-slate-300 dark:border-slate-700 bg-transparent text-primary focus:ring-primary focus:ring-offset-0 focus:outline-none transition-all cursor-pointer" type="checkbox"/>
+</div>
+<div class="flex flex-col">
+<p class="text-slate-900 dark:text-slate-100 text-base font-semibold leading-none">Sync loyalty status</p>
+<p class="text-slate-500 dark:text-slate-400 text-sm mt-1">Maintain your Platinum benefits</p>
+</div>
+</label>
+<label class="flex items-center gap-x-4 py-4 px-2 cursor-pointer hover:bg-slate-100 dark:hover:bg-slate-800/50 rounded-lg transition-colors">
+<div class="relative flex items-center">
+<input class="h-6 w-6 rounded border-slate-300 dark:border-slate-700 bg-transparent text-primary focus:ring-primary focus:ring-offset-0 focus:outline-none transition-all cursor-pointer" type="checkbox"/>
+</div>
+<div class="flex flex-col">
+<p class="text-slate-900 dark:text-slate-100 text-base font-semibold leading-none">Auto-log rental expenses</p>
+<p class="text-slate-500 dark:text-slate-400 text-sm mt-1">Instant expense reporting</p>
+</div>
+</label>
+</div>
+</div>
+<!-- Actions Section -->
+<div class="mt-auto p-6 space-y-4">
+<button class="flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-xl h-14 px-5 bg-primary text-white text-lg font-bold leading-normal tracking-[0.015em] shadow-lg active:scale-[0.98] transition-transform">
+<span class="truncate">Connect Sixt Account</span>
+</button>
+<p class="text-slate-500 dark:text-slate-500 text-xs text-center px-4 leading-relaxed">
+                By connecting your account, you agree to the StayWallet 
+                <a class="text-primary hover:underline" href="#">Terms of Service</a> and 
+                <a class="text-primary hover:underline" href="#">Privacy Policy</a>. We only access data needed for syncing.
+            </p>
+</div>
+<!-- Extra spacing for mobile nav areas -->
+<div class="h-6 bg-background-light dark:bg-background-dark"></div>
+</div>
+</body></html>
