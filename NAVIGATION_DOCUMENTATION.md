@@ -275,6 +275,53 @@ Profile (/profile)
 
 ---
 
+## ⚠️ Kullanılmayan Ekranlar (Route Tanımlı Ama Navigate Edilmeyen)
+
+Aşağıdaki ekranlar router'da tanımlıdır ancak **hiçbir yerden navigate edilmemektedir**. Bu ekranlar muhtemelen gelecekte kullanılmak üzere hazırlanmıştır veya eksik implementasyon vardır:
+
+| Ekran | Route | Durum |
+|-------|-------|-------|
+| Merchant Offers | `/marketplace/merchant-offers` | ❌ Kullanılmıyor |
+| Passport Scan | `/identity/passport-scan` | ❌ Kullanılmıyor |
+| Trip Itinerary | `/travel/trip-itinerary` | ❌ Kullanılmıyor |
+| Trip Budgeting | `/travel/trip-budgeting` | ❌ Kullanılmıyor |
+| Uber Ride Tracking | `/travel/uber-tracking` | ❌ Kullanılmıyor |
+| Frequent Flyer | `/integrations/frequent-flyer` | ❌ Kullanılmıyor |
+| Checkout Bill | `/travel/checkout-bill` | ❌ Kullanılmıyor |
+| Order Confirmation | `/travel/order-confirmation` | ❌ Kullanılmıyor |
+| Order Tracking | `/travel/order-tracking` | ❌ Kullanılmıyor |
+| Post Trip Expense | `/travel/post-trip-expense` | ❌ Kullanılmıyor |
+
+**Toplam**: 10 ekran tanımlı ama kullanılmıyor.
+
+---
+
+## ✅ Aktif Olarak Kullanılan Ekranlar
+
+Aşağıdaki ekranlar router'da tanımlı **VE** uygulamada aktif olarak kullanılmaktadır:
+
+### Ana Ekranlar (Bottom Navigation)
+- ✅ Dashboard (`/`)
+- ✅ Wallet (`/wallet`)
+- ✅ Digital Key (`/key`)
+- ✅ Travel Services (`/services`)
+- ✅ Profile (`/profile`)
+
+### Aktif Full-Screen Routes
+- ✅ Currency Exchange (`/wallet/currency-exchange`)
+- ✅ Digital Key Details (`/travel/digital-key-details`)
+- ✅ Smart Card (`/wallet/smart-card`)
+- ✅ Spending Notification (`/wallet/spending-notification`)
+- ✅ Loyalty Rewards (`/marketplace/loyalty-rewards`)
+- ✅ Identity Verification (`/identity/verification`)
+- ✅ E-Visa (`/integrations/e-visa`)
+- ✅ Connect Account (`/integrations/connect/:provider`)
+- ✅ Linked Success (`/integrations/linked-success/:provider`)
+
+**Toplam**: 14 ekran aktif olarak kullanılıyor.
+
+---
+
 ## Önemli Notlar
 
 1. **Bottom Navigation**: Sadece 5 ana ekran bottom navigation bar'da görünür (Dashboard, Wallet, Digital Key, Travel Services, Profile)
@@ -288,6 +335,11 @@ Profile (/profile)
 4. **Transition Animasyonları**: Full-screen route'lar slide transition animasyonu kullanır (sağdan sola)
 
 5. **Initial Route**: Uygulama açıldığında `/` (Dashboard) ekranı gösterilir
+
+6. **Eksik Navigasyon**: 10 ekran tanımlı ancak hiçbir yerden navigate edilmiyor. Bu ekranlar muhtemelen:
+   - Gelecekte kullanılmak üzere hazırlanmış
+   - Henüz implement edilmemiş özellikler için
+   - Test amaçlı oluşturulmuş olabilir
 
 ---
 
