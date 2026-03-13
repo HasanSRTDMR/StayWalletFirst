@@ -2,78 +2,170 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../core/constants/app_colors.dart';
+import '../../../../core/models/transaction_model.dart';
 import '../../../../core/router/app_router.dart';
+import '../../../../core/services/wallet_service.dart';
+import '../../../../widgets/transaction_tile.dart';
 
 /// Wallet overview screen
-class WalletScreen extends StatelessWidget {
+class WalletScreen extends StatefulWidget {
   const WalletScreen({super.key});
+
+  @override
+  State<WalletScreen> createState() => _WalletScreenState();
+}
+
+class _WalletScreenState extends State<WalletScreen> {
+  final _walletService = WalletService();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'StayWallet',
-                style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                      fontStyle: FontStyle.italic,
+        child: FutureBuilder(
+          future: Future.wait([
+            _walletService.getWallet(),
+            _walletService.getTransactions(),
+          ]),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(child: CircularProgressIndicator());
+            }
+
+            if (snapshot.hasError) {
+              return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Icon(Icons.error_outline, size: 48, color: AppColors.slate400),
+                    const SizedBox(height: 16),
+                    Text(
+                      'Error loading wallet data',
+                      style: Theme.of(context).textTheme.titleMedium,
                     ),
-              ),
-              const SizedBox(height: 24),
-              _buildBalanceCard(context),
-              const SizedBox(height: 24),
-              _buildQuickActions(context),
-              const SizedBox(height: 24),
-              Text(
-                'Recent Transactions',
-                style: Theme.of(context).textTheme.titleMedium,
-              ),
-              const SizedBox(height: 12),
-              ListTile(
-                contentPadding: EdgeInsets.zero,
-                leading: CircleAvatar(
-                  backgroundColor: AppColors.primary.withOpacity(0.2),
-                  child: const Icon(Icons.currency_exchange, color: AppColors.primary),
+                    const SizedBox(height: 8),
+                    Text(
+                      snapshot.error.toString(),
+                      style: Theme.of(context).textTheme.bodySmall,
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
                 ),
-                title: const Text('Currency Exchange'),
-                subtitle: const Text('AED ↔ USD'),
-                trailing: const Icon(Icons.chevron_right),
-                onTap: () => context.push(AppRoutes.currencyExchange),
-              ),
-              ListTile(
-                contentPadding: EdgeInsets.zero,
-                leading: CircleAvatar(
-                  backgroundColor: AppColors.slate800,
-                  child: const Icon(Icons.credit_card, color: AppColors.slate400),
+              );
+            }
+
+            final results = snapshot.data!;
+            final wallet = results[0] as dynamic;
+            final transactions = results[1] as List<dynamic>;
+
+            return RefreshIndicator(
+              onRefresh: () async {
+                setState(() {});
+              },
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'StayWallet',
+                      style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                            fontStyle: FontStyle.italic,
+                          ),
+                    ),
+                    const SizedBox(height: 24),
+                    _buildBalanceCard(context, wallet),
+                    const SizedBox(height: 24),
+                    _buildQuickActions(context),
+                    const SizedBox(height: 24),
+                    Text(
+                      'Recent Transactions',
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
+                    const SizedBox(height: 12),
+                    ...transactions.map((txn) => Padding(
+                          padding: const EdgeInsets.only(bottom: 12),
+                          child: TransactionTile(
+                            icon: _getIconFromName(txn.iconName),
+                            iconBgColor: txn.type == TransactionType.income
+                                ? AppColors.green.withValues(alpha: 0.2)
+                                : AppColors.primary.withValues(alpha: 0.2),
+                            title: txn.title,
+                            amount: txn.amount,
+                            subtitle: txn.subtitle,
+                            trailingText: txn.trailingText,
+                            type: txn.type,
+                          ),
+                        )),
+                    const SizedBox(height: 24),
+                    ListTile(
+                      contentPadding: EdgeInsets.zero,
+                      leading: CircleAvatar(
+                        backgroundColor: AppColors.primary.withOpacity(0.2),
+                        child: const Icon(Icons.currency_exchange, color: AppColors.primary),
+                      ),
+                      title: const Text('Currency Exchange'),
+                      subtitle: const Text('AED ↔ USD'),
+                      trailing: const Icon(Icons.chevron_right),
+                      onTap: () => context.push(AppRoutes.currencyExchange),
+                    ),
+                    ListTile(
+                      contentPadding: EdgeInsets.zero,
+                      leading: CircleAvatar(
+                        backgroundColor: AppColors.slate800,
+                        child: const Icon(Icons.credit_card, color: AppColors.slate400),
+                      ),
+                      title: const Text('Smart Card'),
+                      subtitle: const Text('Manage cards'),
+                      trailing: const Icon(Icons.chevron_right),
+                      onTap: () => context.push(AppRoutes.smartCard),
+                    ),
+                    ListTile(
+                      contentPadding: EdgeInsets.zero,
+                      leading: CircleAvatar(
+                        backgroundColor: AppColors.primary.withOpacity(0.2),
+                        child: const Icon(Icons.notifications, color: AppColors.primary),
+                      ),
+                      title: const Text('Spending Alerts'),
+                      subtitle: const Text('Configure notifications'),
+                      trailing: const Icon(Icons.chevron_right),
+                      onTap: () => context.push(AppRoutes.spendingNotification),
+                    ),
+                  ],
                 ),
-                title: const Text('Smart Card'),
-                subtitle: const Text('Manage cards'),
-                trailing: const Icon(Icons.chevron_right),
-                onTap: () => context.push(AppRoutes.smartCard),
               ),
-              ListTile(
-                contentPadding: EdgeInsets.zero,
-                leading: CircleAvatar(
-                  backgroundColor: AppColors.primary.withOpacity(0.2),
-                  child: const Icon(Icons.notifications, color: AppColors.primary),
-                ),
-                title: const Text('Spending Alerts'),
-                subtitle: const Text('Configure notifications'),
-                trailing: const Icon(Icons.chevron_right),
-                onTap: () => context.push(AppRoutes.spendingNotification),
-              ),
-            ],
-          ),
+            );
+          },
         ),
       ),
     );
   }
 
-  Widget _buildBalanceCard(BuildContext context) {
+  IconData _getIconFromName(String iconName) {
+    switch (iconName) {
+      case 'dinner_dining':
+        return Icons.dinner_dining;
+      case 'shopping_bag':
+        return Icons.shopping_bag;
+      case 'add_circle':
+        return Icons.add_circle;
+      case 'spa':
+        return Icons.spa;
+      case 'currency_exchange':
+        return Icons.currency_exchange;
+      default:
+        return Icons.receipt;
+    }
+  }
+
+  String _formatCurrency(double amount) {
+    return amount.toStringAsFixed(2).replaceAllMapped(
+          RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'),
+          (Match m) => '${m[1]},',
+        );
+  }
+
+  Widget _buildBalanceCard(BuildContext context, dynamic wallet) {
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(24),
@@ -93,7 +185,7 @@ class WalletScreen extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           Text(
-            '1,250.00 AED',
+            '${_formatCurrency(wallet.primaryBalance)} ${wallet.primaryCurrency}',
             style: Theme.of(context).textTheme.headlineLarge?.copyWith(
                   fontSize: 32,
                   fontWeight: FontWeight.bold,

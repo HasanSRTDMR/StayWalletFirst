@@ -1,0 +1,130 @@
+{
+  "user": {
+    "id": "user_001",
+    "firstName": "Mr.",
+    "lastName": "Alexander",
+    "email": "alexander@example.com",
+    "profileImageUrl": null
+  },
+  "wallet": {
+    "id": "wallet_001",
+    "primaryBalance": 1250.00,
+    "primaryCurrency": "AED",
+    "otherBalances": {
+      "USD": 340.50,
+      "EUR": 312.00
+    },
+    "lastUpdated": "2026-03-13T10:00:00Z"
+  },
+  "transactions": [
+    {
+      "id": "txn_001",
+      "title": "Mirage Grill & Lounge",
+      "amount": "- 245.00 AED",
+      "subtitle": "Hotel Restaurant",
+      "type": "expense",
+      "timestamp": "2026-03-13T08:00:00Z",
+      "trailingText": "15% Discount Applied",
+      "iconName": "dinner_dining"
+    },
+    {
+      "id": "txn_002",
+      "title": "Dubai Mall Merchant",
+      "amount": "- 89.00 AED",
+      "subtitle": "External Merchant • 2 hours ago",
+      "type": "expense",
+      "timestamp": "2026-03-13T06:00:00Z",
+      "iconName": "shopping_bag"
+    },
+    {
+      "id": "txn_003",
+      "title": "Wallet Top-up",
+      "amount": "+ 500.00 AED",
+      "subtitle": "Visa **** 4421 • Yesterday",
+      "type": "income",
+      "timestamp": "2026-03-12T14:00:00Z",
+      "iconName": "add_circle"
+    },
+    {
+      "id": "txn_004",
+      "title": "Spa Treatment",
+      "amount": "- 180.00 AED",
+      "subtitle": "Hotel Spa • 3 days ago",
+      "type": "expense",
+      "timestamp": "2026-03-10T16:00:00Z",
+      "iconName": "spa"
+    },
+    {
+      "id": "txn_005",
+      "title": "Currency Exchange",
+      "amount": "+ 250.00 USD",
+      "subtitle": "AED to USD • 5 days ago",
+      "type": "income",
+      "timestamp": "2026-03-08T10:00:00Z",
+      "iconName": "currency_exchange"
+    },
+    {
+      "id": "txn_006",
+      "title": "Room Service",
+      "amount": "- 120.00 AED",
+      "subtitle": "Hotel Room Service • 1 week ago",
+      "type": "expense",
+      "timestamp": "2026-03-06T20:00:00Z",
+      "iconName": "room_service"
+    },
+    {
+      "id": "txn_007",
+      "title": "Taxi Ride",
+      "amount": "- 45.00 AED",
+      "subtitle": "Uber • 1 week ago",
+      "type": "expense",
+      "timestamp": "2026-03-05T18:00:00Z",
+      "iconName": "local_taxi"
+    },
+    {
+      "id": "txn_008",
+      "title": "Gift Shop Purchase",
+      "amount": "- 75.00 AED",
+      "subtitle": "Hotel Gift Shop • 2 weeks ago",
+      "type": "expense",
+      "timestamp": "2026-02-28T15:00:00Z",
+      "iconName": "shopping_bag"
+    },
+    {
+      "id": "txn_009",
+      "title": "Reward Points Redemption",
+      "amount": "+ 200.00 AED",
+      "subtitle": "Loyalty Points • 2 weeks ago",
+      "type": "income",
+      "timestamp": "2026-02-27T12:00:00Z",
+      "iconName": "stars"
+    },
+    {
+      "id": "txn_010",
+      "title": "Laundry Service",
+      "amount": "- 95.00 AED",
+      "subtitle": "Hotel Laundry • 3 weeks ago",
+      "type": "expense",
+      "timestamp": "2026-02-20T10:00:00Z",
+      "iconName": "local_laundry_service"
+    }
+  ],
+  "loyaltyStatus": {
+    "tier": "Gold Status",
+    "currentPoints": 850,
+    "nextTierPoints": 1000,
+    "nextTier": "Diamond Status",
+    "message": "150 points until your next luxury reward"
+  },
+  "digitalKey": {
+    "id": "key_001",
+    "hotelName": "Grand Mirage Dubai",
+    "roomInfo": "Room 402 • Deluxe Suite",
+    "roomNumber": "402",
+    "roomType": "Deluxe Suite",
+    "isActive": true,
+    "imageUrl": "https://lh3.googleusercontent.com/aida-public/AB6AXuDtMOquMZeSy5vbzeF1LyryVO1AETid7GB67wV6i8kqXSNqkAsXfsAzRKXuseCUI2zH2sK5Z6TdndvSmcPr7Mu_yrmCCpC-Ydfg30NxSSULPkq6LLfd7FAtIHwyeY0Zb-b8um-lKJSQHDRcwFMeA9U7jgXoIzOLGljO04JUSG5XViXtxdchkrIeME6I2w67STW_VKU6kut1C-eNfDLiS2sp3AFmOYlc-e8X1tlniVuJXQzC3lQfh8rJij26uUgBs6yObDaLnMQOD2UV",
+    "checkInDate": "2026-03-11T14:00:00Z",
+    "checkOutDate": "2026-03-18T11:00:00Z"
+  }
+}

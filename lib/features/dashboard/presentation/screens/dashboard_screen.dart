@@ -2,50 +2,108 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../core/constants/app_colors.dart';
+import '../../../../core/models/transaction_model.dart';
 import '../../../../core/router/app_router.dart';
+import '../../../../core/services/dashboard_service.dart';
 import '../../../../core/theme/app_theme.dart';
 import '../../../../widgets/action_tile.dart';
 import '../../../../widgets/transaction_tile.dart';
 
 /// Main dashboard screen - StayWallet home
-class DashboardScreen extends StatelessWidget {
+class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
+
+  @override
+  State<DashboardScreen> createState() => _DashboardScreenState();
+}
+
+class _DashboardScreenState extends State<DashboardScreen> {
+  final _dashboardService = DashboardService();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _DashboardHeader(),
-              const SizedBox(height: 24),
-              _LoyaltyStatusCard(),
-              const SizedBox(height: 24),
-              _DigitalKeyCard(
-                hotelName: 'Grand Mirage Dubai',
-                roomInfo: 'Room 402 • Deluxe Suite',
-                onUnlock: () => context.push(AppRoutes.digitalKeyDetails),
+        child: FutureBuilder(
+          future: Future.wait([
+            _dashboardService.getUser(),
+            _dashboardService.getWallet(),
+            _dashboardService.getLoyaltyStatus(),
+            _dashboardService.getDigitalKey(),
+            _dashboardService.getRecentTransactions(),
+          ]),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(child: CircularProgressIndicator());
+            }
+
+            if (snapshot.hasError) {
+              return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Icon(Icons.error_outline, size: 48, color: AppColors.slate400),
+                    const SizedBox(height: 16),
+                    Text(
+                      'Error loading data',
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      snapshot.error.toString(),
+                      style: Theme.of(context).textTheme.bodySmall,
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
+              );
+            }
+
+            final results = snapshot.data!;
+            final user = results[0] as dynamic;
+            final wallet = results[1] as dynamic;
+            final loyaltyStatus = results[2] as dynamic;
+            final digitalKey = results[3] as dynamic;
+            final transactions = results[4] as List<dynamic>;
+
+            return RefreshIndicator(
+              onRefresh: () async {
+                setState(() {});
+              },
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _DashboardHeader(user: user),
+                    const SizedBox(height: 24),
+                    _LoyaltyStatusCard(loyaltyStatus: loyaltyStatus),
+                    const SizedBox(height: 24),
+                    _DigitalKeyCard(
+                      digitalKey: digitalKey,
+                      onUnlock: () => context.push(AppRoutes.digitalKeyDetails),
+                    ),
+                    const SizedBox(height: 24),
+                    _WalletSection(
+                      wallet: wallet,
+                      onManage: () => context.push(AppRoutes.wallet),
+                      onTopUp: () => context.push(AppRoutes.currencyExchange),
+                    ),
+                    const SizedBox(height: 24),
+                    _QuickActionsSection(
+                      onBookSpa: () {},
+                      onRoomService: () => context.push(AppRoutes.orderingRoomServiceVoice),
+                      onViewTours: () {},
+                      onCheckout: () {},
+                    ),
+                    const SizedBox(height: 24),
+                    _RecentActivitySection(transactions: transactions),
+                    const SizedBox(height: 100),
+                  ],
+                ),
               ),
-              const SizedBox(height: 24),
-              _WalletSection(
-                onManage: () => context.push(AppRoutes.wallet),
-                onTopUp: () => context.push(AppRoutes.currencyExchange),
-              ),
-              const SizedBox(height: 24),
-              _QuickActionsSection(
-                onBookSpa: () {},
-                onRoomService: () => context.push(AppRoutes.orderingRoomServiceVoice),
-                onViewTours: () {},
-                onCheckout: () {},
-              ),
-              const SizedBox(height: 24),
-              _RecentActivitySection(),
-              const SizedBox(height: 100),
-            ],
-          ),
+            );
+          },
         ),
       ),
     );
@@ -53,6 +111,10 @@ class DashboardScreen extends StatelessWidget {
 }
 
 class _DashboardHeader extends StatelessWidget {
+  final dynamic user;
+
+  const _DashboardHeader({required this.user});
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -78,7 +140,7 @@ class _DashboardHeader extends StatelessWidget {
                   style: Theme.of(context).textTheme.bodySmall,
                 ),
                 Text(
-                  'Mr. Alexander',
+                  user.fullName,
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
               ],
@@ -123,6 +185,10 @@ class _DashboardHeader extends StatelessWidget {
 }
 
 class _LoyaltyStatusCard extends StatelessWidget {
+  final dynamic loyaltyStatus;
+
+  const _LoyaltyStatusCard({required this.loyaltyStatus});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -147,7 +213,7 @@ class _LoyaltyStatusCard extends StatelessWidget {
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    'Gold Status',
+                    loyaltyStatus.tier,
                     style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                           color: Colors.black87,
                           fontStyle: FontStyle.italic,
@@ -167,14 +233,14 @@ class _LoyaltyStatusCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                '850 / 1000 pts',
+                '${loyaltyStatus.currentPoints} / ${loyaltyStatus.nextTierPoints} pts',
                 style: Theme.of(context).textTheme.labelSmall?.copyWith(
                       color: Colors.black87,
                       fontWeight: FontWeight.bold,
                     ),
               ),
               Text(
-                'Diamond Status',
+                loyaltyStatus.nextTier,
                 style: Theme.of(context).textTheme.labelSmall?.copyWith(
                       color: Colors.black87,
                       fontWeight: FontWeight.bold,
@@ -186,7 +252,7 @@ class _LoyaltyStatusCard extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(4),
             child: LinearProgressIndicator(
-              value: 0.85,
+              value: loyaltyStatus.progress.clamp(0.0, 1.0),
               backgroundColor: Colors.black.withOpacity(0.1),
               valueColor: const AlwaysStoppedAnimation<Color>(Colors.black54),
               minHeight: 6,
@@ -194,7 +260,7 @@ class _LoyaltyStatusCard extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           Text(
-            '150 points until your next luxury reward',
+            loyaltyStatus.message,
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
                   color: Colors.black87,
                   fontSize: 10,
@@ -207,13 +273,11 @@ class _LoyaltyStatusCard extends StatelessWidget {
 }
 
 class _DigitalKeyCard extends StatelessWidget {
-  final String hotelName;
-  final String roomInfo;
+  final dynamic digitalKey;
   final VoidCallback onUnlock;
 
   const _DigitalKeyCard({
-    required this.hotelName,
-    required this.roomInfo,
+    required this.digitalKey,
     required this.onUnlock,
   });
 
@@ -240,12 +304,12 @@ class _DigitalKeyCard extends StatelessWidget {
             height: 128,
             decoration: BoxDecoration(
               color: AppColors.slate800,
-              image: const DecorationImage(
-                image: NetworkImage(
-                  'https://lh3.googleusercontent.com/aida-public/AB6AXuDtMOquMZeSy5vbzeF1LyryVO1AETid7GB67wV6i8kqXSNqkAsXfsAzRKXuseCUI2zH2sK5Z6TdndvSmcPr7Mu_yrmCCpC-Ydfg30NxSSULPkq6LLfd7FAtIHwyeY0Zb-b8um-lKJSQHDRcwFMeA9U7jgXoIzOLGljO04JUSG5XViXtxdchkrIeME6I2w67STW_VKU6kut1C-eNfDLiS2sp3AFmOYlc-e8X1tlniVuJXQzC3lQfh8rJij26uUgBs6yObDaLnMQOD2UV',
-                ),
-                fit: BoxFit.cover,
-              ),
+              image: digitalKey.imageUrl != null
+                  ? DecorationImage(
+                      image: NetworkImage(digitalKey.imageUrl!),
+                      fit: BoxFit.cover,
+                    )
+                  : null,
             ),
             child: Stack(
               children: [
@@ -292,12 +356,12 @@ class _DigitalKeyCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        hotelName,
+                        digitalKey.hotelName,
                         style: Theme.of(context).textTheme.titleLarge,
                       ),
                       const SizedBox(height: 4),
                       Text(
-                        roomInfo,
+                        digitalKey.roomInfo,
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                               color: AppColors.slate400,
                             ),
@@ -337,16 +401,28 @@ class _DigitalKeyCard extends StatelessWidget {
 }
 
 class _WalletSection extends StatelessWidget {
+  final dynamic wallet;
   final VoidCallback onManage;
   final VoidCallback onTopUp;
 
   const _WalletSection({
+    required this.wallet,
     required this.onManage,
     required this.onTopUp,
   });
 
+  String _formatCurrency(double amount) {
+    return amount.toStringAsFixed(2).replaceAllMapped(
+          RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'),
+          (Match m) => '${m[1]},',
+        );
+  }
+
   @override
   Widget build(BuildContext context) {
+    final usdBalance = wallet.otherBalances['USD'] ?? 0.0;
+    final eurBalance = wallet.otherBalances['EUR'] ?? 0.0;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -392,7 +468,7 @@ class _WalletSection extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'PRIMARY CURRENCY (AED)',
+                          'PRIMARY CURRENCY (${wallet.primaryCurrency})',
                           style: Theme.of(context).textTheme.labelSmall?.copyWith(
                                 color: AppColors.slate400,
                               ),
@@ -403,7 +479,7 @@ class _WalletSection extends StatelessWidget {
                           textBaseline: TextBaseline.alphabetic,
                           children: [
                             Text(
-                              '1,250.00',
+                              _formatCurrency(wallet.primaryBalance),
                               style: Theme.of(context).textTheme.headlineLarge?.copyWith(
                                     fontSize: 28,
                                     letterSpacing: -0.5,
@@ -411,7 +487,7 @@ class _WalletSection extends StatelessWidget {
                             ),
                             const SizedBox(width: 8),
                             Text(
-                              'AED',
+                              wallet.primaryCurrency,
                               style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                                     color: AppColors.slate500,
                                     fontSize: 18,
@@ -429,72 +505,58 @@ class _WalletSection extends StatelessWidget {
                   ),
                 ],
               ),
-              const SizedBox(height: 16),
-              Container(
-                padding: const EdgeInsets.only(top: 16),
-                decoration: BoxDecoration(
-                  border: Border(
-                    top: BorderSide(color: AppColors.slate800),
+              if (wallet.otherBalances.isNotEmpty) ...[
+                const SizedBox(height: 16),
+                Container(
+                  padding: const EdgeInsets.only(top: 16),
+                  decoration: BoxDecoration(
+                    border: Border(
+                      top: BorderSide(color: AppColors.slate800),
+                    ),
+                  ),
+                  child: Builder(
+                    builder: (context) {
+                      final entries = wallet.otherBalances.entries.take(2).toList();
+                      return Row(
+                        children: [
+                          for (int i = 0; i < entries.length; i++)
+                            Expanded(
+                              child: Container(
+                                margin: EdgeInsets.only(right: i < entries.length - 1 ? 8 : 0),
+                                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                                decoration: BoxDecoration(
+                                  color: AppColors.slate800,
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      entries[i].key,
+                                      style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                                            color: AppColors.slate400,
+                                          ),
+                                    ),
+                                    Text(
+                                      entries[i].key == 'USD'
+                                          ? '\$${_formatCurrency(entries[i].value)}'
+                                          : entries[i].key == 'EUR'
+                                              ? '€${_formatCurrency(entries[i].value)}'
+                                              : '${_formatCurrency(entries[i].value)} ${entries[i].key}',
+                                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                        ],
+                      );
+                    },
                   ),
                 ),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                        decoration: BoxDecoration(
-                          color: AppColors.slate800,
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'USD',
-                              style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                                    color: AppColors.slate400,
-                                  ),
-                            ),
-                            Text(
-                              '\$340.50',
-                              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    const SizedBox(width: 8),
-                    Expanded(
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                        decoration: BoxDecoration(
-                          color: AppColors.slate800,
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'EUR',
-                              style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                                    color: AppColors.slate400,
-                                  ),
-                            ),
-                            Text(
-                              '€312.00',
-                              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              ],
             ],
           ),
         ),
@@ -558,6 +620,27 @@ class _QuickActionsSection extends StatelessWidget {
 }
 
 class _RecentActivitySection extends StatelessWidget {
+  final List<dynamic> transactions;
+
+  const _RecentActivitySection({required this.transactions});
+
+  IconData _getIconFromName(String iconName) {
+    switch (iconName) {
+      case 'dinner_dining':
+        return Icons.dinner_dining;
+      case 'shopping_bag':
+        return Icons.shopping_bag;
+      case 'add_circle':
+        return Icons.add_circle;
+      case 'spa':
+        return Icons.spa;
+      case 'currency_exchange':
+        return Icons.currency_exchange;
+      default:
+        return Icons.receipt;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -568,30 +651,20 @@ class _RecentActivitySection extends StatelessWidget {
           style: Theme.of(context).textTheme.titleMedium,
         ),
         const SizedBox(height: 12),
-        TransactionTile(
-          icon: Icons.dinner_dining,
-          iconBgColor: AppColors.primary.withValues(alpha: 0.2),
-          title: 'Mirage Grill & Lounge',
-          amount: '- 245.00 AED',
-          subtitle: 'Hotel Restaurant',
-          trailingText: '15% Discount Applied',
-        ),
-        const SizedBox(height: 12),
-        TransactionTile(
-          icon: Icons.shopping_bag,
-          iconBgColor: AppColors.slate800,
-          title: 'Dubai Mall Merchant',
-          amount: '- 89.00 AED',
-          subtitle: 'External Merchant • 2 hours ago',
-        ),
-        const SizedBox(height: 12),
-        TransactionTile(
-          icon: Icons.add_circle,
-          title: 'Wallet Top-up',
-          amount: '+ 500.00 AED',
-          subtitle: 'Visa **** 4421 • Yesterday',
-          type: TransactionType.income,
-        ),
+        ...transactions.map((txn) => Padding(
+              padding: const EdgeInsets.only(bottom: 12),
+              child: TransactionTile(
+                icon: _getIconFromName(txn.iconName),
+                iconBgColor: txn.type == TransactionType.income
+                    ? AppColors.green.withValues(alpha: 0.2)
+                    : AppColors.primary.withValues(alpha: 0.2),
+                title: txn.title,
+                amount: txn.amount,
+                subtitle: txn.subtitle,
+                trailingText: txn.trailingText,
+                type: txn.type,
+              ),
+            )),
       ],
     );
   }
