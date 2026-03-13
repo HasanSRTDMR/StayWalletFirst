@@ -24,11 +24,11 @@ class TravelServicesScreen extends StatelessWidget {
             actions: [
               IconButton(
                 icon: const Icon(Icons.notifications_outlined),
-                onPressed: () {},
+                onPressed: () => context.push(AppRoutes.spendingNotification),
               ),
               IconButton(
                 icon: const Icon(Icons.account_circle_outlined),
-                onPressed: () {},
+                onPressed: () => context.push(AppRoutes.profile),
               ),
             ],
           ),
@@ -79,7 +79,7 @@ class TravelServicesScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 24),
                   _LoyaltyBanner(
-                    onSync: () {},
+                    onSync: () => context.push(AppRoutes.frequentFlyer),
                   ),
                   const SizedBox(height: 24),
                   TextField(
@@ -157,7 +157,7 @@ class TravelServicesScreen extends StatelessWidget {
                         ),
                       ),
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () => context.push(AppRoutes.merchantOffers),
                         child: Text(
                           'See all',
                           style: TextStyle(
@@ -174,7 +174,7 @@ class TravelServicesScreen extends StatelessWidget {
                     title: 'Porsche 911 Carrera S',
                     subtitle: 'Exotic Rental Experience',
                     discount: '-15% OFF',
-                    onTap: () {},
+                    onTap: () => context.push(AppRoutes.selectUberRide),
                   ),
                   const SizedBox(height: 24),
                   Container(
@@ -678,43 +678,62 @@ class _FeaturedDealCard extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Row(
-                        children: [
-                          Container(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 8,
-                              vertical: 4,
-                            ),
-                            decoration: BoxDecoration(
-                              color: Colors.white.withOpacity(0.2),
-                              borderRadius: BorderRadius.circular(4),
-                            ),
-                            child: Text(
-                              discount,
-                              style: const TextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.w700,
-                                color: Colors.white,
+                      Flexible(
+                        flex: 2,
+                        child: Row(
+                          children: [
+                            Flexible(
+                              child: Container(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 6,
+                                  vertical: 4,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: Colors.white.withOpacity(0.2),
+                                  borderRadius: BorderRadius.circular(4),
+                                ),
+                                child: Text(
+                                  discount,
+                                  style: const TextStyle(
+                                    fontSize: 11,
+                                    fontWeight: FontWeight.w700,
+                                    color: Colors.white,
+                                  ),
+                                  overflow: TextOverflow.ellipsis,
+                                ),
                               ),
                             ),
-                          ),
-                          const SizedBox(width: 8),
-                          Text(
-                            'Platinum Member Rate',
-                            style: TextStyle(
-                              fontSize: 12,
-                              color: Colors.white.withOpacity(0.8),
+                            const SizedBox(width: 6),
+                            Flexible(
+                              flex: 2,
+                              child: Text(
+                                'Platinum Member Rate',
+                                style: TextStyle(
+                                  fontSize: 11,
+                                  color: Colors.white.withOpacity(0.8),
+                                ),
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 1,
+                              ),
                             ),
-                          ),
-                        ],
-                      ),
-                      ElevatedButton(
-                        onPressed: onTap,
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.white,
-                          foregroundColor: AppColors.backgroundDark,
+                          ],
                         ),
-                        child: const Text('Book with Sixt'),
+                      ),
+                      const SizedBox(width: 8),
+                      Flexible(
+                        child: ElevatedButton(
+                          onPressed: onTap,
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.white,
+                            foregroundColor: AppColors.backgroundDark,
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 12,
+                              vertical: 12,
+                            ),
+                            textStyle: const TextStyle(fontSize: 11),
+                          ),
+                          child: const Text('Book'),
+                        ),
                       ),
                     ],
                   ),

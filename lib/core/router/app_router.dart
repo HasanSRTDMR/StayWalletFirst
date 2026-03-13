@@ -85,6 +85,24 @@ class AppRouter {
   static final GoRouter router = GoRouter(
     navigatorKey: _rootNavigatorKey,
     initialLocation: AppRoutes.dashboard,
+    debugLogDiagnostics: false,
+    errorBuilder: (context, state) => Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Icon(Icons.error_outline, size: 48),
+            const SizedBox(height: 16),
+            Text('Route not found: ${state.uri}'),
+            const SizedBox(height: 16),
+            ElevatedButton(
+              onPressed: () => router.go(AppRoutes.dashboard),
+              child: const Text('Go to Dashboard'),
+            ),
+          ],
+        ),
+      ),
+    ),
     routes: [
       ShellRoute(
         navigatorKey: _shellNavigatorKey,

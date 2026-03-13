@@ -12,6 +12,8 @@ class CurrencyExchangeScreen extends StatefulWidget {
 
 class _CurrencyExchangeScreenState extends State<CurrencyExchangeScreen> {
   String _amount = '1,250';
+  String _fromCurrency = 'USD';
+  String _toCurrency = 'AED';
 
   void _appendDigit(String digit) {
     setState(() {
@@ -49,7 +51,7 @@ class _CurrencyExchangeScreenState extends State<CurrencyExchangeScreen> {
                   ),
                   IconButton(
                     icon: const Icon(Icons.info_outline),
-                    onPressed: () {},
+                    onPressed: () => _showExchangeInfo(context),
                   ),
                 ],
               ),
@@ -125,7 +127,7 @@ class _CurrencyExchangeScreenState extends State<CurrencyExchangeScreen> {
                     SizedBox(
                       width: double.infinity,
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () => _confirmExchange(context),
                         style: ElevatedButton.styleFrom(
                           backgroundColor: AppColors.accentGold,
                           foregroundColor: Colors.black87,
@@ -314,4 +316,81 @@ class _Numpad extends StatelessWidget {
       }).toList(),
     );
   }
+}
+
+// Helper functions for currency exchange
+void _showExchangeInfo(BuildContext context) {
+  showDialog(
+    context: context,
+    builder: (context) => AlertDialog(
+      backgroundColor: AppColors.cardDark,
+      title: const Text('Exchange Information'),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text('Exchange Rate: 1 USD = 3.67 AED'),
+          const SizedBox(height: 12),
+          const Text('Exchange Fee: 0.5%'),
+          const SizedBox(height: 12),
+          const Text('Processing Time: Instant'),
+          const SizedBox(height: 12),
+          Text(
+            'Note: Exchange rates are updated in real-time. Final amount may vary slightly.',
+            style: TextStyle(
+              fontSize: 12,
+              color: AppColors.slate400,
+            ),
+          ),
+        ],
+      ),
+      actions: [
+        ElevatedButton(
+          onPressed: () => Navigator.of(context, rootNavigator: true).pop(),
+          child: const Text('OK'),
+        ),
+      ],
+    ),
+  );
+}
+
+void _confirmExchange(BuildContext context) {
+  showDialog(
+    context: context,
+    builder: (context) => AlertDialog(
+      backgroundColor: AppColors.cardDark,
+      title: Row(
+        children: [
+          Icon(Icons.check_circle, color: AppColors.green, size: 28),
+          const SizedBox(width: 12),
+          const Expanded(child: Text('Exchange Confirmed')),
+        ],
+      ),
+      content: const Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text('Your currency exchange has been processed successfully!'),
+          SizedBox(height: 12),
+          Text(
+            'The exchanged amount will be available in your wallet immediately.',
+            style: TextStyle(fontSize: 12, color: AppColors.slate400),
+          ),
+        ],
+      ),
+      actions: [
+        ElevatedButton(
+          onPressed: () {
+            Navigator.of(context, rootNavigator: true).pop();
+            Future.delayed(const Duration(milliseconds: 100), () {
+              if (context.mounted) {
+                Navigator.of(context, rootNavigator: true).pop();
+              }
+            });
+          },
+          child: const Text('OK'),
+        ),
+      ],
+    ),
+  );
 }

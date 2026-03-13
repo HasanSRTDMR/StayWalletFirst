@@ -77,7 +77,7 @@ class DigitalKeyDetailsScreen extends StatelessWidget {
                   const SizedBox(height: 48),
                   // Hold to unlock button
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () => _unlockRoom(context),
                     child: Container(
                       width: 208,
                       height: 208,
@@ -132,4 +132,63 @@ class DigitalKeyDetailsScreen extends StatelessWidget {
       ),
     );
   }
+}
+
+// Helper function for unlocking room
+void _unlockRoom(BuildContext context) {
+  if (!context.mounted) return;
+  
+  // Show loading dialog
+  showDialog(
+    context: context,
+    barrierDismissible: false,
+    builder: (loadingDialogContext) => AlertDialog(
+      backgroundColor: AppColors.cardDark,
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          const CircularProgressIndicator(),
+          const SizedBox(height: 16),
+          const Text('Unlocking room...'),
+        ],
+      ),
+    ),
+  );
+
+  // Simulate unlock process
+  Future.delayed(const Duration(seconds: 2), () {
+    if (!context.mounted) return;
+    
+    // Close loading dialog first
+    Navigator.of(context, rootNavigator: true).pop();
+    
+    // Small delay before showing success dialog
+    Future.delayed(const Duration(milliseconds: 100), () {
+      if (!context.mounted) return;
+      
+      // Show success dialog
+      showDialog(
+        context: context,
+        builder: (successDialogContext) => AlertDialog(
+          backgroundColor: AppColors.cardDark,
+          title: Row(
+            children: [
+              Icon(Icons.lock_open, color: AppColors.green, size: 28),
+              const SizedBox(width: 12),
+              const Expanded(child: Text('Room Unlocked')),
+            ],
+          ),
+          content: const Text('Room 402 has been unlocked successfully!'),
+          actions: [
+            ElevatedButton(
+              onPressed: () {
+                Navigator.of(successDialogContext, rootNavigator: true).pop();
+              },
+              child: const Text('OK'),
+            ),
+          ],
+        ),
+      );
+    });
+  });
 }

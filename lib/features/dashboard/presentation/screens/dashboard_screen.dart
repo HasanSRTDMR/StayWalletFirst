@@ -91,10 +91,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     ),
                     const SizedBox(height: 24),
                     _QuickActionsSection(
-                      onBookSpa: () {},
+                      onBookSpa: () => _showSpaBookingDialog(context),
                       onRoomService: () => context.push(AppRoutes.orderingRoomServiceVoice),
-                      onViewTours: () {},
-                      onCheckout: () {},
+                      onViewTours: () => context.push(AppRoutes.tripItinerary),
+                      onCheckout: () => context.push(AppRoutes.checkoutBill),
                     ),
                     const SizedBox(height: 24),
                     _RecentActivitySection(transactions: transactions),
@@ -157,7 +157,7 @@ class _DashboardHeader extends StatelessWidget {
                 children: [
                   IconButton(
                     icon: const Icon(Icons.notifications_outlined),
-                    onPressed: () {},
+                    onPressed: () => _showNotifications(context),
                   ),
                   Positioned(
                     top: 8,
@@ -666,6 +666,303 @@ class _RecentActivitySection extends StatelessWidget {
               ),
             )),
       ],
+    );
+  }
+}
+
+// Helper functions for dashboard actions
+void _showSpaBookingDialog(BuildContext context) {
+  showDialog(
+    context: context,
+    builder: (context) => AlertDialog(
+      backgroundColor: AppColors.cardDark,
+      title: const Text('Book Spa Service'),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text('Select a spa service:'),
+          const SizedBox(height: 16),
+          _SpaOptionTile(
+            title: 'Deep Tissue Massage',
+            duration: '60 min',
+            price: '180 AED',
+            onTap: () {
+              Navigator.of(context, rootNavigator: true).pop();
+              _showBookingConfirmation(context, 'Deep Tissue Massage');
+            },
+          ),
+          const SizedBox(height: 8),
+          _SpaOptionTile(
+            title: 'Aromatherapy Session',
+            duration: '90 min',
+            price: '250 AED',
+            onTap: () {
+              Navigator.of(context, rootNavigator: true).pop();
+              _showBookingConfirmation(context, 'Aromatherapy Session');
+            },
+          ),
+          const SizedBox(height: 8),
+          _SpaOptionTile(
+            title: 'Facial Treatment',
+            duration: '45 min',
+            price: '150 AED',
+            onTap: () {
+              Navigator.of(context, rootNavigator: true).pop();
+              _showBookingConfirmation(context, 'Facial Treatment');
+            },
+          ),
+        ],
+      ),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.of(context, rootNavigator: true).pop(),
+          child: const Text('Cancel'),
+        ),
+      ],
+    ),
+  );
+}
+
+class _SpaOptionTile extends StatelessWidget {
+  final String title;
+  final String duration;
+  final String price;
+  final VoidCallback onTap;
+
+  const _SpaOptionTile({
+    required this.title,
+    required this.duration,
+    required this.price,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(8),
+      child: Container(
+        padding: const EdgeInsets.all(12),
+        decoration: BoxDecoration(
+          color: AppColors.slate800,
+          borderRadius: BorderRadius.circular(8),
+          border: Border.all(color: AppColors.slate700),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: AppColors.slate100,
+                  ),
+                ),
+                Text(
+                  duration,
+                  style: const TextStyle(
+                    fontSize: 12,
+                    color: AppColors.slate400,
+                  ),
+                ),
+              ],
+            ),
+            Text(
+              price,
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: AppColors.accentGold,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+void _showBookingConfirmation(BuildContext context, String serviceName) {
+  showDialog(
+    context: context,
+    builder: (context) => AlertDialog(
+      backgroundColor: AppColors.cardDark,
+      title: Row(
+        children: [
+          Icon(Icons.check_circle, color: AppColors.green, size: 28),
+          const SizedBox(width: 12),
+          const Expanded(child: Text('Booking Confirmed')),
+        ],
+      ),
+      content: Text('Your $serviceName appointment has been booked successfully!'),
+      actions: [
+        ElevatedButton(
+          onPressed: () => Navigator.of(context, rootNavigator: true).pop(),
+          child: const Text('OK'),
+        ),
+      ],
+    ),
+  );
+}
+
+void _showNotifications(BuildContext context) {
+  final notifications = [
+    {
+      'title': 'Wallet Top-up Successful',
+      'message': 'Your wallet has been topped up with 500 AED',
+      'time': '2 hours ago',
+      'isRead': false,
+    },
+    {
+      'title': 'Room Service Order',
+      'message': 'Your room service order is being prepared',
+      'time': '5 hours ago',
+      'isRead': false,
+    },
+    {
+      'title': 'Loyalty Points Update',
+      'message': 'You earned 50 points from your recent purchase',
+      'time': '1 day ago',
+      'isRead': true,
+    },
+    {
+      'title': 'Check-out Reminder',
+      'message': 'Your check-out is scheduled for tomorrow at 11:00 AM',
+      'time': '2 days ago',
+      'isRead': true,
+    },
+  ];
+
+  showModalBottomSheet(
+    context: context,
+    backgroundColor: AppColors.backgroundDark,
+    shape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+    ),
+    isScrollControlled: true,
+    builder: (context) => DraggableScrollableSheet(
+      initialChildSize: 0.6,
+      minChildSize: 0.4,
+      maxChildSize: 0.9,
+      builder: (context, scrollController) => Container(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Notifications',
+                  style: Theme.of(context).textTheme.titleLarge,
+                ),
+                TextButton(
+                  onPressed: () => Navigator.of(context, rootNavigator: true).pop(),
+                  child: const Text('Close'),
+                ),
+              ],
+            ),
+            const SizedBox(height: 8),
+            Flexible(
+              child: ListView.builder(
+                controller: scrollController,
+                shrinkWrap: true,
+                itemCount: notifications.length,
+                itemBuilder: (context, index) {
+                  final notif = notifications[index];
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom: 12),
+                    child: _NotificationTile(
+                      title: notif['title'] as String,
+                      message: notif['message'] as String,
+                      time: notif['time'] as String,
+                      isRead: notif['isRead'] as bool,
+                    ),
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
+    ),
+  );
+}
+
+class _NotificationTile extends StatelessWidget {
+  final String title;
+  final String message;
+  final String time;
+  final bool isRead;
+
+  const _NotificationTile({
+    required this.title,
+    required this.message,
+    required this.time,
+    required this.isRead,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 12),
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: isRead ? AppColors.slate800 : AppColors.primary.withValues(alpha: 0.1),
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(
+          color: isRead ? AppColors.slate700 : AppColors.primary.withValues(alpha: 0.3),
+        ),
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          if (!isRead)
+            Container(
+              width: 8,
+              height: 8,
+              margin: const EdgeInsets.only(top: 6, right: 12),
+              decoration: const BoxDecoration(
+                color: AppColors.accentGold,
+                shape: BoxShape.circle,
+              ),
+            ),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: TextStyle(
+                    fontWeight: isRead ? FontWeight.normal : FontWeight.bold,
+                    color: AppColors.slate100,
+                  ),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  message,
+                  style: const TextStyle(
+                    fontSize: 12,
+                    color: AppColors.slate400,
+                  ),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  time,
+                  style: const TextStyle(
+                    fontSize: 10,
+                    color: AppColors.slate500,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

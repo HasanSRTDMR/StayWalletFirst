@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../core/constants/app_colors.dart';
+import '../../../../core/router/app_router.dart';
 
 class AIVoiceAssistantScreen extends StatelessWidget {
   const AIVoiceAssistantScreen({super.key});
@@ -33,7 +34,13 @@ class AIVoiceAssistantScreen extends StatelessWidget {
                   children: [
                     IconButton(
                       icon: const Icon(Icons.close, color: Colors.white),
-                      onPressed: () => context.pop(),
+                      onPressed: () {
+                        if (context.canPop()) {
+                          context.pop();
+                        } else {
+                          context.go(AppRoutes.dashboard);
+                        }
+                      },
                     ),
                     Row(
                       children: [
@@ -64,7 +71,7 @@ class AIVoiceAssistantScreen extends StatelessWidget {
                     ),
                     IconButton(
                       icon: const Icon(Icons.settings, color: Colors.white),
-                      onPressed: () {},
+                      onPressed: () => _showSettingsDialog(context),
                     ),
                   ],
                 ),
@@ -203,24 +210,49 @@ class AIVoiceAssistantScreen extends StatelessWidget {
                                   context,
                                   Icons.restaurant,
                                   'Book Mirage Grill',
+                                  onTap: () {
+                                    final currentRoute = GoRouterState.of(context).uri.path;
+                                    if (currentRoute != AppRoutes.orderingRoomServiceVoice) {
+                                      context.push(AppRoutes.orderingRoomServiceVoice);
+                                    }
+                                  },
                                 ),
                                 const SizedBox(width: 12),
                                 _buildSuggestedAction(
                                   context,
                                   Icons.account_balance_wallet,
                                   'Check balance',
+                                  onTap: () {
+                                    final currentRoute = GoRouterState.of(context).uri.path;
+                                    // Wallet is a ShellRoute, use go() instead of push()
+                                    if (currentRoute != AppRoutes.wallet) {
+                                      context.go(AppRoutes.wallet);
+                                    }
+                                  },
                                 ),
                                 const SizedBox(width: 12),
                                 _buildSuggestedAction(
                                   context,
                                   Icons.meeting_room,
                                   'Unlock room',
+                                  onTap: () {
+                                    final currentRoute = GoRouterState.of(context).uri.path;
+                                    if (currentRoute != AppRoutes.digitalKeyDetails) {
+                                      context.push(AppRoutes.digitalKeyDetails);
+                                    }
+                                  },
                                 ),
                                 const SizedBox(width: 12),
                                 _buildSuggestedAction(
                                   context,
                                   Icons.explore,
                                   'Find tours',
+                                  onTap: () {
+                                    final currentRoute = GoRouterState.of(context).uri.path;
+                                    if (currentRoute != AppRoutes.tripItinerary) {
+                                      context.push(AppRoutes.tripItinerary);
+                                    }
+                                  },
                                 ),
                               ],
                             ),
@@ -247,23 +279,42 @@ class AIVoiceAssistantScreen extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            _buildNavItem(Icons.home, 'Home'),
-            Container(
-              width: 56,
-              height: 56,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: AppColors.primary,
-                boxShadow: [
-                  BoxShadow(
-                    color: AppColors.primary.withOpacity(0.4),
-                    blurRadius: 12,
-                  ),
-                ],
+            _buildNavItem(Icons.home, 'Home', () {
+              if (!context.mounted) return;
+              final currentRoute = GoRouterState.of(context).uri.path;
+              // Dashboard is a ShellRoute, use go() instead of push()
+              if (currentRoute != AppRoutes.dashboard) {
+                context.go(AppRoutes.dashboard);
+              } else if (context.canPop()) {
+                context.pop();
+              }
+            }),
+            GestureDetector(
+              onTap: () => _toggleMicrophone(context),
+              child: Container(
+                width: 56,
+                height: 56,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: AppColors.primary,
+                  boxShadow: [
+                    BoxShadow(
+                      color: AppColors.primary.withOpacity(0.4),
+                      blurRadius: 12,
+                    ),
+                  ],
+                ),
+                child: const Icon(Icons.mic, color: Colors.white, size: 28),
               ),
-              child: const Icon(Icons.mic, color: Colors.white, size: 28),
             ),
-            _buildNavItem(Icons.person, 'Profile'),
+            _buildNavItem(Icons.person, 'Profile', () {
+              if (!context.mounted) return;
+              final currentRoute = GoRouterState.of(context).uri.path;
+              // Profile is a ShellRoute, use go() instead of push()
+              if (currentRoute != AppRoutes.profile) {
+                context.go(AppRoutes.profile);
+              }
+            }),
           ],
         ),
       ),
@@ -292,50 +343,233 @@ class AIVoiceAssistantScreen extends StatelessWidget {
   Widget _buildSuggestedAction(
     BuildContext context,
     IconData icon,
-    String label,
-  ) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-      decoration: BoxDecoration(
-        color: AppColors.slate800.withOpacity(0.4),
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(
-          color: AppColors.slate700.withOpacity(0.5),
+    String label, {
+    VoidCallback? onTap,
+  }) {
+    return GestureDetector(
+      onTap: onTap ?? () => _handleVoiceCommand(context, label),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+        decoration: BoxDecoration(
+          color: AppColors.slate800.withOpacity(0.4),
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(
+            color: AppColors.slate700.withOpacity(0.5),
+          ),
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(icon, color: AppColors.accentGold, size: 20),
+            const SizedBox(width: 12),
+            Text(
+              label,
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    fontWeight: FontWeight.w500,
+                    color: Colors.white,
+                  ),
+            ),
+          ],
         ),
       ),
-      child: Row(
+    );
+  }
+
+  Widget _buildNavItem(IconData icon, String label, VoidCallback onTap) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(icon, color: AppColors.accentGold, size: 20),
-          const SizedBox(width: 12),
+          Icon(icon, color: AppColors.slate500, size: 24),
+          const SizedBox(height: 4),
           Text(
             label,
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  fontWeight: FontWeight.w500,
-                  color: Colors.white,
-                ),
+            style: TextStyle(
+              fontSize: 10,
+              fontWeight: FontWeight.bold,
+              color: AppColors.slate500,
+              letterSpacing: 0.5,
+            ),
           ),
         ],
       ),
     );
   }
+}
 
-  Widget _buildNavItem(IconData icon, String label) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Icon(icon, color: AppColors.slate500, size: 24),
-        const SizedBox(height: 4),
-        Text(
-          label,
-          style: TextStyle(
-            fontSize: 10,
-            fontWeight: FontWeight.bold,
-            color: AppColors.slate500,
-            letterSpacing: 0.5,
+// Helper functions for AI Voice Assistant
+void _showSettingsDialog(BuildContext context) {
+  showDialog(
+    context: context,
+    builder: (context) => AlertDialog(
+      backgroundColor: AppColors.cardDark,
+      title: const Text('Concierge Settings'),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          ListTile(
+            leading: const Icon(Icons.volume_up, color: AppColors.primary),
+            title: const Text('Voice Volume'),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () {
+              Navigator.pop(context);
+              _showVolumeSettings(context);
+            },
           ),
+          ListTile(
+            leading: const Icon(Icons.language, color: AppColors.primary),
+            title: const Text('Language'),
+            trailing: const Text('English'),
+            onTap: () {
+              Navigator.pop(context);
+              _showLanguageSettings(context);
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.notifications, color: AppColors.primary),
+            title: const Text('Notifications'),
+            trailing: Switch(
+              value: true,
+              onChanged: (value) {},
+            ),
+          ),
+        ],
+      ),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.of(context, rootNavigator: true).pop(),
+          child: const Text('Close'),
         ),
       ],
-    );
-  }
+    ),
+  );
+}
+
+void _showVolumeSettings(BuildContext context) {
+  showDialog(
+    context: context,
+    builder: (context) => AlertDialog(
+      backgroundColor: AppColors.cardDark,
+      title: const Text('Voice Volume'),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Slider(
+            value: 0.7,
+            onChanged: (value) {},
+            min: 0.0,
+            max: 1.0,
+          ),
+          const Text('70%'),
+        ],
+      ),
+      actions: [
+          ElevatedButton(
+            onPressed: () => Navigator.of(context, rootNavigator: true).pop(),
+            child: const Text('OK'),
+          ),
+      ],
+    ),
+  );
+}
+
+void _showLanguageSettings(BuildContext context) {
+  showDialog(
+    context: context,
+    builder: (context) => AlertDialog(
+      backgroundColor: AppColors.cardDark,
+      title: const Text('Select Language'),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          ListTile(
+            title: const Text('English'),
+            trailing: const Icon(Icons.check, color: AppColors.primary),
+            onTap: () => Navigator.of(context, rootNavigator: true).pop(),
+          ),
+          ListTile(
+            title: const Text('Turkish'),
+            onTap: () => Navigator.of(context, rootNavigator: true).pop(),
+          ),
+          ListTile(
+            title: const Text('Arabic'),
+            onTap: () => Navigator.of(context, rootNavigator: true).pop(),
+          ),
+        ],
+      ),
+    ),
+  );
+}
+
+void _toggleMicrophone(BuildContext context) {
+  ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(
+      content: const Row(
+        children: [
+          Icon(Icons.mic, color: Colors.white),
+          SizedBox(width: 12),
+          Text('Listening...'),
+        ],
+      ),
+      backgroundColor: AppColors.primary,
+      duration: const Duration(seconds: 2),
+    ),
+  );
+}
+
+void _handleVoiceCommand(BuildContext context, String command) {
+  if (!context.mounted) return;
+  
+  ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(
+      content: Row(
+        children: [
+          const Icon(Icons.check_circle, color: Colors.white),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Text('Processing: $command'),
+          ),
+        ],
+      ),
+      backgroundColor: AppColors.green,
+      duration: const Duration(seconds: 2),
+    ),
+  );
+  
+  // Navigate based on command
+  Future.delayed(const Duration(seconds: 1), () {
+    if (!context.mounted) return;
+    
+    try {
+      final currentRoute = GoRouterState.of(context).uri.path;
+      
+      switch (command.toLowerCase()) {
+        case 'book mirage grill':
+          if (currentRoute != AppRoutes.orderingRoomServiceVoice) {
+            context.push(AppRoutes.orderingRoomServiceVoice);
+          }
+          break;
+        case 'check balance':
+          // Wallet is a ShellRoute, use go() instead of push()
+          if (currentRoute != AppRoutes.wallet) {
+            context.go(AppRoutes.wallet);
+          }
+          break;
+        case 'unlock room':
+          if (currentRoute != AppRoutes.digitalKeyDetails) {
+            context.push(AppRoutes.digitalKeyDetails);
+          }
+          break;
+        case 'find tours':
+          if (currentRoute != AppRoutes.tripItinerary) {
+            context.push(AppRoutes.tripItinerary);
+          }
+          break;
+      }
+    } catch (e) {
+      // Ignore navigation errors
+    }
+  });
 }

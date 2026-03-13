@@ -204,7 +204,7 @@ class _WalletScreenState extends State<WalletScreen> {
               const SizedBox(width: 12),
               Expanded(
                 child: OutlinedButton.icon(
-                  onPressed: () {},
+                  onPressed: () => _showSendMoneyDialog(context),
                   icon: const Icon(Icons.send, size: 18),
                   label: const Text('Send'),
                   style: OutlinedButton.styleFrom(
@@ -241,7 +241,10 @@ class _WalletScreenState extends State<WalletScreen> {
           child: _QuickActionTile(
             icon: Icons.history,
             label: 'History',
-            onTap: () {},
+            onTap: () {
+              // Show transaction history (already visible below)
+              // Could scroll to transactions section
+            },
           ),
         ),
       ],
@@ -292,4 +295,139 @@ class _QuickActionTile extends StatelessWidget {
       ),
     );
   }
+}
+
+// Helper function for send money
+void _showSendMoneyDialog(BuildContext context) {
+  final amountController = TextEditingController();
+  final recipientController = TextEditingController();
+  String selectedCurrency = 'AED';
+
+  showDialog(
+    context: context,
+    builder: (context) => StatefulBuilder(
+      builder: (context, setState) => AlertDialog(
+        backgroundColor: AppColors.cardDark,
+        title: const Text('Send Money'),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            TextField(
+              controller: recipientController,
+              decoration: const InputDecoration(
+                labelText: 'Recipient',
+                hintText: 'Enter phone number or email',
+                border: OutlineInputBorder(),
+              ),
+            ),
+            const SizedBox(height: 16),
+            Row(
+              children: [
+                Expanded(
+                  child: TextField(
+                    controller: amountController,
+                    keyboardType: TextInputType.number,
+                    decoration: const InputDecoration(
+                      labelText: 'Amount',
+                      border: OutlineInputBorder(),
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 12),
+                DropdownButton<String>(
+                  value: selectedCurrency,
+                  items: ['AED', 'USD', 'EUR'].map((currency) {
+                    return DropdownMenuItem(
+                      value: currency,
+                      child: Text(currency),
+                    );
+                  }).toList(),
+                  onChanged: (value) {
+                    setState(() {
+                      selectedCurrency = value!;
+                    });
+                  },
+                ),
+              ],
+            ),
+            const SizedBox(height: 8),
+            Text(
+              'Available balance: 1,250.00 AED',
+              style: TextStyle(
+                fontSize: 12,
+                color: AppColors.slate400,
+              ),
+            ),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context, rootNavigator: true).pop(),
+            child: const Text('Cancel'),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              if (amountController.text.isNotEmpty &&
+                  recipientController.text.isNotEmpty) {
+                Navigator.of(context, rootNavigator: true).pop();
+                Future.delayed(const Duration(milliseconds: 100), () {
+                  if (context.mounted) {
+                    _showSendConfirmation(
+                      context,
+                      amountController.text,
+                      selectedCurrency,
+                      recipientController.text,
+                    );
+                  }
+                });
+              }
+            },
+            child: const Text('Send'),
+          ),
+        ],
+      ),
+    ),
+  );
+}
+
+void _showSendConfirmation(
+  BuildContext context,
+  String amount,
+  String currency,
+  String recipient,
+) {
+  showDialog(
+    context: context,
+    builder: (context) => AlertDialog(
+      backgroundColor: AppColors.cardDark,
+      title: Row(
+        children: [
+          Icon(Icons.check_circle, color: AppColors.green, size: 28),
+          const SizedBox(width: 12),
+          const Expanded(child: Text('Money Sent')),
+        ],
+      ),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text('Amount: $amount $currency'),
+          const SizedBox(height: 8),
+          Text('Recipient: $recipient'),
+          const SizedBox(height: 16),
+          const Text(
+            'Transaction completed successfully!',
+            style: TextStyle(fontSize: 12, color: AppColors.slate400),
+          ),
+        ],
+      ),
+      actions: [
+        ElevatedButton(
+          onPressed: () => Navigator.of(context, rootNavigator: true).pop(),
+          child: const Text('OK'),
+        ),
+      ],
+    ),
+  );
 }
