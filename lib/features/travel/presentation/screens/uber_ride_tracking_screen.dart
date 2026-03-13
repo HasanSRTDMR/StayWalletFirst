@@ -14,7 +14,13 @@ class UberRideTrackingScreen extends StatelessWidget {
         title: const Text('Ride Tracking'),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
-          onPressed: () => Navigator.of(context).pop(),
+          onPressed: () {
+            if (context.canPop()) {
+              context.pop();
+            } else {
+              context.go(AppRoutes.dashboard);
+            }
+          },
         ),
       ),
       body: Padding(

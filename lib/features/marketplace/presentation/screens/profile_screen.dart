@@ -66,6 +66,26 @@ class ProfileScreen extends StatelessWidget {
             title: 'Notifications',
             onTap: () => context.push(AppRoutes.spendingNotification),
           ),
+          _ProfileTile(
+            icon: Icons.account_balance_wallet,
+            title: 'Trip Budgeting',
+            onTap: () => context.push(AppRoutes.tripBudgeting),
+          ),
+          _ProfileTile(
+            icon: Icons.receipt_long,
+            title: 'Post Trip Expense',
+            onTap: () => context.push(AppRoutes.postTripExpense),
+          ),
+          _ProfileTile(
+            icon: Icons.local_offer,
+            title: 'Merchant Offers',
+            onTap: () => context.push(AppRoutes.merchantOffers),
+          ),
+          _ProfileTile(
+            icon: Icons.hub,
+            title: 'Integrated Travel Hub',
+            onTap: () => context.push(AppRoutes.integratedTravelHub),
+          ),
           const Divider(),
           _ProfileTile(
             icon: Icons.logout,

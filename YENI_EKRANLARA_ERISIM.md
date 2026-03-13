@@ -119,20 +119,37 @@ Bu dokümantasyon, yeni oluşturulan ekranlara nasıl ulaşılacağını açıkl
 ```
 Dashboard
 ├── 🎤 Mikrofon İkonu → AI Voice Assistant
-└── Quick Actions → Room Service → Ordering Room Service Voice
+├── Quick Actions → Room Service → Ordering Room Service Voice
+│   └── Confirm Order → Order Confirmation → Track Order → Order Tracking
+├── View Tours → Trip Itinerary
+│   ├── Trip Budget → Trip Budgeting
+│   └── Post Trip Expense → Post Trip Expense
+└── Check-out → Checkout Bill
 
 Travel Services
+├── Connected Accounts → Travel Hub chip → Integrated Travel Hub
 ├── Travel Insurance → Allianz Travel Insurance Selection
 │   └── Plan Seçimi → Allianz Insurance Linked Successfully
-├── Rental Car → Select Uber Ride
+├── Rental Car / Featured Deals → Select Uber Ride
+│   └── Request Ride → Uber Ride Tracking → Book Another Ride → Select Uber Ride
+├── Featured Deals See All → Merchant Offers
 └── E-Visa Services → E-Visa Screen
     └── Ülke Seçimi → E-Visa Linked Successfully
 
 Profile
-└── Secondary Cardholder → Secondary Cardholder App View
+├── Secondary Cardholder → Secondary Cardholder App View
+├── Loyalty & Rewards → Loyalty Rewards
+├── Identity Verification → Passport Scan (Scan Passport butonu)
+├── Trip Budgeting → Trip Budgeting
+├── Post Trip Expense → Post Trip Expense
+├── Merchant Offers → Merchant Offers
+└── Integrated Travel Hub → Integrated Travel Hub
 
-Uber Ride Tracking
-└── Book Another Ride → Select Uber Ride
+Identity Verification
+└── Scan Passport → Passport Scan
+
+Order Confirmation
+└── Track Order → Order Tracking
 ```
 
 ---

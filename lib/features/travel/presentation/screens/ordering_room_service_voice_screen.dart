@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../core/constants/app_colors.dart';
+import '../../../../core/router/app_router.dart';
 
 class OrderingRoomServiceVoiceScreen extends StatelessWidget {
   const OrderingRoomServiceVoiceScreen({super.key});
@@ -187,6 +188,20 @@ class OrderingRoomServiceVoiceScreen extends StatelessWidget {
                     'https://lh3.googleusercontent.com/aida-public/AB6AXuBDQ-Dkn9Nh28oLSTkm5z1QcF6pHP0lIjrUSGd1c4GeqCbgFizkmrFFW8v5CfD7swu2F0aI1WSNBCcejnkkIjOoq3u9G1S-71tXB6_wUgwM8gBApfr5Gim6bkAtvxxqoIdfrLKWooyj9pCZJrng86tDI2juvG2pjTdidXW5h_ydw1y3lt7zWSAqOrE7LiOAG0HATy8S5rHmEKjA53QLu1AoTRlG7t0uEpYDlOZJIIZM3W5mShmxDGXDhVtvAeLkIqMc0jcT2ttYmDbF',
                   ),
                 ],
+              ),
+              const SizedBox(height: 24),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () => context.push(AppRoutes.orderConfirmation),
+                  style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(vertical: 16),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                  child: const Text('Confirm Order'),
+                ),
               ),
             ],
           ),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../core/constants/app_colors.dart';
+import '../../../../core/router/app_router.dart';
 
 class TripItineraryScreen extends StatelessWidget {
   const TripItineraryScreen({super.key});
@@ -12,12 +14,38 @@ class TripItineraryScreen extends StatelessWidget {
         title: const Text('Trip Itinerary'),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
-          onPressed: () => Navigator.of(context).pop(),
+          onPressed: () {
+            if (context.canPop()) {
+              context.pop();
+            } else {
+              context.go(AppRoutes.dashboard);
+            }
+          },
         ),
       ),
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
+          Row(
+            children: [
+              Expanded(
+                child: OutlinedButton.icon(
+                  onPressed: () => context.push(AppRoutes.tripBudgeting),
+                  icon: const Icon(Icons.account_balance_wallet, size: 18),
+                  label: const Text('Trip Budget'),
+                ),
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: OutlinedButton.icon(
+                  onPressed: () => context.push(AppRoutes.postTripExpense),
+                  icon: const Icon(Icons.receipt_long, size: 18),
+                  label: const Text('Post Trip Expense'),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 16),
           _ItineraryCard(
             date: 'Mar 15, 2025',
             title: 'Dubai International Airport',

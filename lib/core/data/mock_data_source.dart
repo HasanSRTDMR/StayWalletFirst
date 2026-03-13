@@ -2,8 +2,14 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/services.dart';
 import '../models/digital_key_model.dart';
+import '../models/integrated_travel_hub_model.dart';
 import '../models/loyalty_status_model.dart';
+import '../models/merchant_offer_model.dart';
+import '../models/order_tracking_model.dart';
+import '../models/post_trip_expense_model.dart';
 import '../models/transaction_model.dart';
+import '../models/trip_budget_model.dart';
+import '../models/uber_ride_tracking_model.dart';
 import '../models/user_model.dart';
 import '../models/wallet_model.dart';
 import 'data_source.dart';
@@ -117,6 +123,65 @@ class MockDataSource implements DataSource {
         'checkInDate': DateTime.now().subtract(const Duration(days: 2)).toIso8601String(),
         'checkOutDate': DateTime.now().add(const Duration(days: 5)).toIso8601String(),
       },
+      'tripBudget': {
+        'totalBudget': 2500,
+        'currency': 'AED',
+        'spentAmount': 1625,
+        'spentLabel': '1,625 AED spent',
+        'categories': [
+          {'label': 'Accommodation', 'amount': '1,200 AED', 'percent': 48},
+          {'label': 'Dining', 'amount': '350 AED', 'percent': 14},
+          {'label': 'Transport', 'amount': '180 AED', 'percent': 7},
+          {'label': 'Activities', 'amount': '245 AED', 'percent': 10},
+        ],
+      },
+      'postTripExpenses': [
+        {'id': 'exp_001', 'name': 'Dubai Trip - Dec 2024', 'totalExpenses': '2,450 AED', 'currency': 'AED'},
+      ],
+      'merchantOffers': {
+        'filters': [
+          {'id': 'dining', 'label': 'Dining', 'icon': 'restaurant'},
+          {'id': 'shopping', 'label': 'Shopping', 'icon': 'shopping_bag'},
+          {'id': 'tours', 'label': 'Tours', 'icon': 'explore'},
+          {'id': 'spa', 'label': 'Spa', 'icon': 'spa'},
+        ],
+        'merchants': [
+          {'id': 'm1', 'title': 'Mirage Grill', 'subtitle': 'Fine Dining • International Cuisine', 'discount': '15% Off with StayWallet', 'distance': '0.4 km away', 'rating': 4.9, 'imageUrl': 'https://picsum.photos/400/200?random=1'},
+          {'id': 'm2', 'title': 'Dubai Mall Luxury Shop', 'subtitle': 'Fashion • Accessories • Premium Brands', 'discount': '10% Off with StayWallet', 'distance': '1.2 km away', 'rating': 4.8, 'imageUrl': 'https://picsum.photos/400/200?random=2'},
+          {'id': 'm3', 'title': 'Desert Safari Tours', 'subtitle': 'Adventure • Cultural • Evening Tours', 'discount': '20% Off with StayWallet', 'distance': '5.0 km away', 'rating': 5.0, 'imageUrl': 'https://picsum.photos/400/200?random=3'},
+        ],
+      },
+      'orderTracking': {
+        'orderId': '#4521',
+        'title': 'Room Service - Order #4521',
+        'status': 'Preparing',
+        'eta': 'ETA 25 min',
+        'statusEta': 'Preparing • ETA 25 min',
+      },
+      'uberRideTracking': {
+        'rideType': 'UberX',
+        'carModel': 'Toyota Camry • ABC 123',
+        'pickup': 'Grand Mirage Dubai',
+        'destination': 'Dubai Mall',
+        'eta': '8 min',
+      },
+      'integratedTravelHub': {
+        'connectedAccounts': [
+          {'label': 'Booking.com', 'sublabel': 'Genius Level 2', 'colorHex': '4285F4'},
+          {'label': 'Sixt', 'sublabel': 'Platinum Status', 'colorHex': 'FF9800'},
+          {'label': 'Allianz', 'sublabel': 'Active Policy', 'colorHex': '1565C0'},
+        ],
+        'frequentFlyerPrograms': [
+          {'label': 'Miles & Smiles (THY)', 'points': '45,200 pts', 'colorHex': 'E53935'},
+          {'label': 'Lufthansa Miles & More', 'points': '12,850 pts', 'colorHex': '1976D2'},
+        ],
+        'categories': [
+          {'icon': 'directions_car', 'title': 'Rental Car', 'subtitle': 'Sixt / Avis / Hertz', 'colorHex': '1976D2'},
+          {'icon': 'hotel', 'title': 'Hotel Booking', 'subtitle': 'via Booking.com', 'colorHex': '10B981'},
+          {'icon': 'restaurant', 'title': 'Restaurants', 'subtitle': 'Cipriani & Local Hotspots', 'colorHex': 'FF9800'},
+          {'icon': 'health_and_safety', 'title': 'Travel Insurance', 'subtitle': 'Allianz Global Assistance', 'colorHex': '7B1FA2'},
+        ],
+      },
     };
   }
 
@@ -158,6 +223,63 @@ class MockDataSource implements DataSource {
     final data = await _loadJsonData();
     return _simulateDelay(
       DigitalKeyModel.fromJson(data['digitalKey'] as Map<String, dynamic>),
+    );
+  }
+
+  @override
+  Future<TripBudgetModel> getTripBudget() async {
+    final data = await _loadJsonData();
+    return _simulateDelay(
+      TripBudgetModel.fromJson(data['tripBudget'] as Map<String, dynamic>),
+    );
+  }
+
+  @override
+  Future<List<PostTripExpenseModel>> getPostTripExpenses() async {
+    final data = await _loadJsonData();
+    final list = data['postTripExpenses'] as List<dynamic>;
+    return _simulateDelay(
+      list
+          .map((e) => PostTripExpenseModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
+  @override
+  Future<MerchantOffersDataModel> getMerchantOffers() async {
+    final data = await _loadJsonData();
+    return _simulateDelay(
+      MerchantOffersDataModel.fromJson(
+        data['merchantOffers'] as Map<String, dynamic>,
+      ),
+    );
+  }
+
+  @override
+  Future<OrderTrackingModel> getOrderTracking() async {
+    final data = await _loadJsonData();
+    return _simulateDelay(
+      OrderTrackingModel.fromJson(data['orderTracking'] as Map<String, dynamic>),
+    );
+  }
+
+  @override
+  Future<UberRideTrackingModel> getUberRideTracking() async {
+    final data = await _loadJsonData();
+    return _simulateDelay(
+      UberRideTrackingModel.fromJson(
+        data['uberRideTracking'] as Map<String, dynamic>,
+      ),
+    );
+  }
+
+  @override
+  Future<IntegratedTravelHubModel> getIntegratedTravelHub() async {
+    final data = await _loadJsonData();
+    return _simulateDelay(
+      IntegratedTravelHubModel.fromJson(
+        data['integratedTravelHub'] as Map<String, dynamic>,
+      ),
     );
   }
 }

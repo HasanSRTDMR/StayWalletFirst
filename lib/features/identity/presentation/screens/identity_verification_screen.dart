@@ -95,9 +95,26 @@ class IdentityVerificationScreen extends StatelessWidget {
                       ),
                       child: Column(
                         children: [
-                          _DetailRow(label: 'Name', value: 'Mr. Alexander'),
-                          _DetailRow(label: 'Passport No', value: 'XXXXXX'),
-                          _DetailRow(label: 'Nationality', value: 'British'),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              const Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    _DetailRow(label: 'Name', value: 'Mr. Alexander'),
+                                    _DetailRow(label: 'Passport No', value: 'XXXXXX'),
+                                    _DetailRow(label: 'Nationality', value: 'British'),
+                                  ],
+                                ),
+                              ),
+                              TextButton.icon(
+                                onPressed: () => context.push(AppRoutes.passportScan),
+                                icon: const Icon(Icons.document_scanner, size: 20),
+                                label: const Text('Scan Passport'),
+                              ),
+                            ],
+                          ),
                         ],
                       ),
                     ),

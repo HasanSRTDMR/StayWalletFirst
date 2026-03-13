@@ -90,7 +90,7 @@ class PassportScanScreen extends StatelessWidget {
               child: SizedBox(
                 width: double.infinity,
                 child: OutlinedButton.icon(
-                  onPressed: () {},
+                  onPressed: () => _simulatePassportScan(context),
                   icon: const Icon(Icons.photo_camera),
                   label: const Text('Open Camera'),
                   style: OutlinedButton.styleFrom(
@@ -104,5 +104,55 @@ class PassportScanScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void _simulatePassportScan(BuildContext context) {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (ctx) => AlertDialog(
+        backgroundColor: AppColors.cardDark,
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const CircularProgressIndicator(),
+            const SizedBox(height: 16),
+            Text(
+              'Scanning passport...',
+              style: TextStyle(color: AppColors.slate400),
+            ),
+          ],
+        ),
+      ),
+    );
+    Future.delayed(const Duration(seconds: 2), () {
+      if (!context.mounted) return;
+      Navigator.of(context, rootNavigator: true).pop();
+      showDialog(
+        context: context,
+        builder: (ctx) => AlertDialog(
+          backgroundColor: AppColors.cardDark,
+          title: Row(
+            children: [
+              Icon(Icons.check_circle, color: AppColors.emerald, size: 28),
+              const SizedBox(width: 12),
+              const Text('Scan Complete'),
+            ],
+          ),
+          content: const Text(
+            'Passport MRZ scanned successfully. Details have been captured.',
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(ctx, rootNavigator: true).pop();
+                context.pop();
+              },
+              child: const Text('Continue'),
+            ),
+          ],
+        ),
+      );
+    });
   }
 }

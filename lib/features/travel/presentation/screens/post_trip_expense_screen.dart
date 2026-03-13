@@ -3,6 +3,28 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../core/constants/app_colors.dart';
 
+
+void _exportReport(BuildContext context) {
+  ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(
+      content: Row(
+        children: [
+          Icon(Icons.check_circle, color: AppColors.emerald),
+          const SizedBox(width: 12),
+          const Expanded(child: Text('Report exported successfully')),
+        ],
+      ),
+      backgroundColor: AppColors.cardDark,
+      behavior: SnackBarBehavior.floating,
+      action: SnackBarAction(
+        label: 'OK',
+        textColor: AppColors.accentGold,
+        onPressed: () {},
+      ),
+    ),
+  );
+}
+
 class PostTripExpenseScreen extends StatelessWidget {
   const PostTripExpenseScreen({super.key});
 
@@ -58,7 +80,7 @@ class PostTripExpenseScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 12),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () => _exportReport(context),
                     child: const Text('Export Report'),
                   ),
                 ],

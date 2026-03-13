@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../core/constants/app_colors.dart';
+import '../../../../core/router/app_router.dart';
 
 class SelectUberRideScreen extends StatefulWidget {
   const SelectUberRideScreen({super.key});
@@ -254,6 +255,22 @@ class _SelectUberRideScreenState extends State<SelectUberRideScreen> {
                               ),
                             ],
                           ),
+                        ),
+                      ),
+                      const SizedBox(height: 16),
+                      SizedBox(
+                        width: double.infinity,
+                        child: ElevatedButton(
+                          onPressed: _selectedRide != null
+                              ? () => context.push(AppRoutes.uberRideTracking)
+                              : null,
+                          style: ElevatedButton.styleFrom(
+                            padding: const EdgeInsets.symmetric(vertical: 16),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                          ),
+                          child: const Text('Request Ride'),
                         ),
                       ),
                     ],

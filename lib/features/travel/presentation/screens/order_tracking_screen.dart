@@ -64,6 +64,38 @@ class OrderTrackingScreen extends StatelessWidget {
                 ],
               ),
             ),
+            const SizedBox(height: 24),
+            SizedBox(
+              width: double.infinity,
+              child: OutlinedButton.icon(
+                onPressed: () {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Row(
+                        children: [
+                          Icon(Icons.support_agent, color: AppColors.accentGold),
+                          const SizedBox(width: 12),
+                          const Expanded(
+                            child: Text(
+                              'Concierge will contact you shortly',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ),
+                        ],
+                      ),
+                      backgroundColor: AppColors.cardDark,
+                      behavior: SnackBarBehavior.floating,
+                    ),
+                  );
+                },
+                icon: const Icon(Icons.contact_support, size: 20),
+                label: const Text('Contact Support'),
+                style: OutlinedButton.styleFrom(
+                  side: const BorderSide(color: AppColors.primary),
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                ),
+              ),
+            ),
           ],
         ),
       ),

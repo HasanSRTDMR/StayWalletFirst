@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../core/constants/app_colors.dart';
+import '../../../../core/router/app_router.dart';
 
 class TripBudgetingScreen extends StatelessWidget {
   const TripBudgetingScreen({super.key});
@@ -12,7 +14,13 @@ class TripBudgetingScreen extends StatelessWidget {
         title: const Text('Trip Budgeting'),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
-          onPressed: () => Navigator.of(context).pop(),
+          onPressed: () {
+            if (context.canPop()) {
+              context.pop();
+            } else {
+              context.go(AppRoutes.dashboard);
+            }
+          },
         ),
       ),
       body: Padding(

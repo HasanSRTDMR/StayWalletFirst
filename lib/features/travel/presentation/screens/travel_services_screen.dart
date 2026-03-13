@@ -74,6 +74,13 @@ class TravelServicesScreen extends StatelessWidget {
                           onTap: () =>
                               context.push('${AppRoutes.connectAccount}/allianz'),
                         ),
+                        _ConnectedAccountChip(
+                          label: 'Travel Hub',
+                          sublabel: 'All connections',
+                          color: AppColors.primary,
+                          onTap: () =>
+                              context.push(AppRoutes.integratedTravelHub),
+                        ),
                       ],
                     ),
                   ),

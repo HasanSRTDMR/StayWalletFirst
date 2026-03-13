@@ -19,11 +19,11 @@ class IntegratedTravelHubScreen extends StatelessWidget {
         actions: [
           IconButton(
             icon: Icon(Icons.notifications, color: AppColors.primary),
-            onPressed: () {},
+            onPressed: () => context.push(AppRoutes.spendingNotification),
           ),
           IconButton(
             icon: const Icon(Icons.account_circle),
-            onPressed: () {},
+            onPressed: () => context.push(AppRoutes.profile),
           ),
         ],
       ),
@@ -46,25 +46,37 @@ class IntegratedTravelHubScreen extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
-                  _buildConnectedAccountChip(
-                    context,
-                    'Booking.com',
-                    'Genius Level 2',
-                    Colors.blue,
+                  GestureDetector(
+                    onTap: () =>
+                        context.push('${AppRoutes.connectAccount}/booking'),
+                    child: _buildConnectedAccountChip(
+                      context,
+                      'Booking.com',
+                      'Genius Level 2',
+                      Colors.blue,
+                    ),
                   ),
                   const SizedBox(width: 12),
-                  _buildConnectedAccountChip(
-                    context,
-                    'Sixt',
-                    'Platinum Status',
-                    Colors.orange,
+                  GestureDetector(
+                    onTap: () =>
+                        context.push('${AppRoutes.connectAccount}/sixt'),
+                    child: _buildConnectedAccountChip(
+                      context,
+                      'Sixt',
+                      'Platinum Status',
+                      Colors.orange,
+                    ),
                   ),
                   const SizedBox(width: 12),
-                  _buildConnectedAccountChip(
-                    context,
-                    'Allianz',
-                    'Active Policy',
-                    Colors.blue.shade800,
+                  GestureDetector(
+                    onTap: () =>
+                        context.push('${AppRoutes.connectAccount}/allianz'),
+                    child: _buildConnectedAccountChip(
+                      context,
+                      'Allianz',
+                      'Active Policy',
+                      Colors.blue.shade800,
+                    ),
                   ),
                 ],
               ),
@@ -112,7 +124,7 @@ class IntegratedTravelHubScreen extends StatelessWidget {
                         ],
                       ),
                       TextButton(
-                        onPressed: () {},
+                        onPressed: () => context.push(AppRoutes.frequentFlyer),
                         child: Text(
                           'SYNC ALL',
                           style: TextStyle(
@@ -173,33 +185,47 @@ class IntegratedTravelHubScreen extends StatelessWidget {
               crossAxisSpacing: 16,
               childAspectRatio: 1.1,
               children: [
-                _buildCategoryCard(
-                  context,
-                  Icons.directions_car,
-                  'Rental Car',
-                  'Sixt / Avis / Hertz',
-                  Colors.blue,
+                GestureDetector(
+                  onTap: () => context.push(AppRoutes.selectUberRide),
+                  child: _buildCategoryCard(
+                    context,
+                    Icons.directions_car,
+                    'Rental Car',
+                    'Sixt / Avis / Hertz',
+                    Colors.blue,
+                  ),
                 ),
-                _buildCategoryCard(
-                  context,
-                  Icons.hotel,
-                  'Hotel Booking',
-                  'via Booking.com',
-                  AppColors.emerald,
+                GestureDetector(
+                  onTap: () =>
+                      context.push('${AppRoutes.connectAccount}/booking'),
+                  child: _buildCategoryCard(
+                    context,
+                    Icons.hotel,
+                    'Hotel Booking',
+                    'via Booking.com',
+                    AppColors.emerald,
+                  ),
                 ),
-                _buildCategoryCard(
-                  context,
-                  Icons.restaurant,
-                  'Restaurants',
-                  'Cipriani & Local Hotspots',
-                  Colors.orange,
+                GestureDetector(
+                  onTap: () => context.push(AppRoutes.merchantOffers),
+                  child: _buildCategoryCard(
+                    context,
+                    Icons.restaurant,
+                    'Restaurants',
+                    'Cipriani & Local Hotspots',
+                    Colors.orange,
+                  ),
                 ),
-                _buildCategoryCard(
-                  context,
-                  Icons.health_and_safety,
-                  'Travel Insurance',
-                  'Allianz Global Assistance',
-                  Colors.purple,
+                GestureDetector(
+                  onTap: () =>
+                      context.push(AppRoutes.allianzTravelInsuranceSelection),
+                  child: _buildCategoryCard(
+                    context,
+                    Icons.health_and_safety,
+                    'Travel Insurance',
+                    'Allianz Global Assistance',
+                    Colors.purple,
+                  ),
                 ),
               ],
             ),
@@ -244,9 +270,10 @@ class IntegratedTravelHubScreen extends StatelessWidget {
                           ),
                           Text(
                             'Check eligibility for US, EU, and 50+ countries',
-                            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                                  color: AppColors.slate500,
-                                ),
+                            style:
+                                Theme.of(context).textTheme.bodySmall?.copyWith(
+                                      color: AppColors.slate500,
+                                    ),
                           ),
                         ],
                       ),
@@ -376,44 +403,47 @@ class IntegratedTravelHubScreen extends StatelessWidget {
     IconData icon,
     String title,
     String subtitle,
-    Color color,
-  ) {
-    return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: AppColors.slate800.withOpacity(0.5),
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: AppColors.slate800),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            padding: const EdgeInsets.all(8),
-            decoration: BoxDecoration(
-              color: color.withOpacity(0.2),
-              borderRadius: BorderRadius.circular(8),
-            ),
-            child: Icon(icon, color: color, size: 24),
+    Color color, {
+    VoidCallback? onTap,
+  }) {
+    return GestureDetector(
+        onTap: onTap,
+        child: Container(
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            color: AppColors.slate800.withOpacity(0.5),
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(color: AppColors.slate800),
           ),
-          const SizedBox(height: 12),
-          Text(
-            title,
-            style: const TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.bold,
-            ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                padding: const EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  color: color.withOpacity(0.2),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Icon(icon, color: color, size: 24),
+              ),
+              const SizedBox(height: 12),
+              Text(
+                title,
+                style: const TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 4),
+              Text(
+                subtitle,
+                style: const TextStyle(
+                  fontSize: 10,
+                  color: AppColors.slate500,
+                ),
+              ),
+            ],
           ),
-          const SizedBox(height: 4),
-          Text(
-            subtitle,
-            style: const TextStyle(
-              fontSize: 10,
-              color: AppColors.slate500,
-            ),
-          ),
-        ],
-      ),
-    );
+        ));
   }
 }
