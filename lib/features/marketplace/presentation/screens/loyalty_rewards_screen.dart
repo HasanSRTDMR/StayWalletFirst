@@ -28,6 +28,7 @@ class LoyaltyRewardsScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
+                    width: double.infinity,
                     padding: const EdgeInsets.all(24),
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
@@ -52,8 +53,8 @@ class LoyaltyRewardsScreen extends StatelessWidget {
                         Container(
                           width: 80,
                           height: 80,
-                          decoration: BoxDecoration(
-                            gradient: const LinearGradient(
+                          decoration: const BoxDecoration(
+                            gradient: LinearGradient(
                               colors: [
                                 Color(0xFFD4AF37),
                                 Color(0xFFF9E3A3),
