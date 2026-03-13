@@ -719,6 +719,13 @@ void _showSpaBookingDialog(BuildContext context) {
           onPressed: () => Navigator.of(context, rootNavigator: true).pop(),
           child: const Text('Cancel'),
         ),
+        TextButton(
+          onPressed: () {
+            Navigator.of(context, rootNavigator: true).pop();
+            context.push(AppRoutes.merchantOffers);
+          },
+          child: const Text('View Spa Offers'),
+        ),
       ],
     ),
   );

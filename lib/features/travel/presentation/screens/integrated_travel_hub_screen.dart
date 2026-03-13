@@ -78,6 +78,17 @@ class IntegratedTravelHubScreen extends StatelessWidget {
                       Colors.blue.shade800,
                     ),
                   ),
+                  const SizedBox(width: 12),
+                  GestureDetector(
+                    onTap: () =>
+                        context.push('${AppRoutes.connectAccount}/uber'),
+                    child: _buildConnectedAccountChip(
+                      context,
+                      'Uber',
+                      'Connect rides',
+                      Colors.black,
+                    ),
+                  ),
                 ],
               ),
             ),

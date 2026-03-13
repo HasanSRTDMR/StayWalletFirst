@@ -131,6 +131,28 @@ class _WalletScreenState extends State<WalletScreen> {
                       trailing: const Icon(Icons.chevron_right),
                       onTap: () => context.push(AppRoutes.spendingNotification),
                     ),
+                    ListTile(
+                      contentPadding: EdgeInsets.zero,
+                      leading: CircleAvatar(
+                        backgroundColor: AppColors.slate800,
+                        child: const Icon(Icons.map, color: AppColors.slate400),
+                      ),
+                      title: const Text('Trip Itinerary'),
+                      subtitle: const Text('View your trip schedule'),
+                      trailing: const Icon(Icons.chevron_right),
+                      onTap: () => context.push(AppRoutes.tripItinerary),
+                    ),
+                    ListTile(
+                      contentPadding: EdgeInsets.zero,
+                      leading: CircleAvatar(
+                        backgroundColor: AppColors.slate800,
+                        child: const Icon(Icons.workspace_premium, color: AppColors.slate400),
+                      ),
+                      title: const Text('Loyalty & Rewards'),
+                      subtitle: const Text('Points and rewards'),
+                      trailing: const Icon(Icons.chevron_right),
+                      onTap: () => context.push(AppRoutes.loyaltyRewards),
+                    ),
                   ],
                 ),
               ),

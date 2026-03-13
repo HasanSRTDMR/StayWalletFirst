@@ -118,11 +118,29 @@ class DigitalKeyDetailsScreen extends StatelessWidget {
                     'Hold your phone near the door lock',
                     style: Theme.of(context).textTheme.bodyMedium,
                   ),
-                  const SizedBox(height: 48),
-                  OutlinedButton.icon(
-                    onPressed: () => context.go(AppRoutes.identityVerification),
-                    icon: const Icon(Icons.key),
-                    label: const Text('Activate Digital Key'),
+                  const SizedBox(height: 32),
+                  SizedBox(
+                    width: double.infinity,
+                    child: OutlinedButton.icon(
+                      onPressed: () => context.push(AppRoutes.checkoutBill),
+                      icon: const Icon(Icons.receipt_long),
+                      label: const Text('View Bill & Checkout'),
+                      style: OutlinedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(vertical: 16),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  SizedBox(
+                    width: double.infinity,
+                    child: OutlinedButton.icon(
+                      onPressed: () => context.go(AppRoutes.identityVerification),
+                      icon: const Icon(Icons.key),
+                      label: const Text('Activate Digital Key'),
+                      style: OutlinedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(vertical: 16),
+                      ),
+                    ),
                   ),
                 ],
               ),

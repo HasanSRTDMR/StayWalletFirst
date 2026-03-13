@@ -86,6 +86,21 @@ class ProfileScreen extends StatelessWidget {
             title: 'Integrated Travel Hub',
             onTap: () => context.push(AppRoutes.integratedTravelHub),
           ),
+          _ProfileTile(
+            icon: Icons.fact_check,
+            title: 'E-Visa Services',
+            onTap: () => context.push(AppRoutes.eVisa),
+          ),
+          _ProfileTile(
+            icon: Icons.currency_exchange,
+            title: 'Currency Exchange',
+            onTap: () => context.push(AppRoutes.currencyExchange),
+          ),
+          _ProfileTile(
+            icon: Icons.receipt_long,
+            title: 'Checkout & Bill',
+            onTap: () => context.push(AppRoutes.checkoutBill),
+          ),
           const Divider(),
           _ProfileTile(
             icon: Icons.logout,
